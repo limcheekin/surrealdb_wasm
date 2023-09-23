@@ -1,0 +1,24 @@
+name: surrealdb_wasm
+description: Flutter surrealdb.wasm.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.1.2 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  js: ^0.6.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  module:
+    androidX: true
+    androidPackage: wtf.rag.surrealdb_wasm
+    iosBundleIdentifier: wtf.rag.surrealdbWasm
