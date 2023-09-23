@@ -4,7 +4,6 @@ library lib.es5.d.ts;
 // ignore_for_file: non_constant_identifier_names, private_optional_parameter, unused_element
 import 'package:js/js.dart';
 import "dart:typed_data";
-import "lib.es5.d.dart";
 
 @JS(r'NaN')
 external num JNaN;
@@ -186,7 +185,9 @@ typedef OmitThisParameter<T> = dynamic;
 @JS()
 @anonymous
 class CallableFunction extends Function {
+  @override
   external R apply<T, R>(T thisArg);
+  @override
   external R call<T, A extends List<dynamic>, R>(
     T thisArg, [
     A? args1,
@@ -199,6 +200,7 @@ class CallableFunction extends Function {
     A? args8,
     A? args9,
   ]);
+  @override
   external OmitThisParameter<T> bind<T>(ThisParameterType<T> thisArg);
   external factory CallableFunction();
 }
@@ -206,7 +208,9 @@ class CallableFunction extends Function {
 @JS()
 @anonymous
 class NewableFunction extends Function {
+  @override
   external void apply<T>(T thisArg);
+  @override
   external void call<T, A extends List<dynamic>>(
     T thisArg, [
     A? args1,
@@ -219,6 +223,7 @@ class NewableFunction extends Function {
     A? args8,
     A? args9,
   ]);
+  @override
   external T bind<T>(dynamic thisArg);
   external factory NewableFunction();
 }
@@ -535,7 +540,9 @@ class EvalError extends Error {
 @JS()
 class EvalErrorConstructor extends ErrorConstructor {
   external factory EvalErrorConstructor({String message});
+  @override
   external EvalError call(String message);
+  @override
   external EvalError get prototype;
 }
 
@@ -551,7 +558,9 @@ class RangeError extends Error {
 @JS()
 class RangeErrorConstructor extends ErrorConstructor {
   external factory RangeErrorConstructor({String message});
+  @override
   external RangeError call(String message);
+  @override
   external RangeError get prototype;
 }
 
@@ -567,7 +576,9 @@ class ReferenceError extends Error {
 @JS()
 class ReferenceErrorConstructor extends ErrorConstructor {
   external factory ReferenceErrorConstructor({String message});
+  @override
   external ReferenceError call(String message);
+  @override
   external ReferenceError get prototype;
 }
 
@@ -583,7 +594,9 @@ class SyntaxError extends Error {
 @JS()
 class SyntaxErrorConstructor extends ErrorConstructor {
   external factory SyntaxErrorConstructor({String message});
+  @override
   external SyntaxError call(String message);
+  @override
   external SyntaxError get prototype;
 }
 
@@ -599,7 +612,9 @@ class TypeError extends Error {
 @JS()
 class TypeErrorConstructor extends ErrorConstructor {
   external factory TypeErrorConstructor({String message});
+  @override
   external TypeError call(String message);
+  @override
   external TypeError get prototype;
 }
 
@@ -615,7 +630,9 @@ class URIError extends Error {
 @JS()
 class URIErrorConstructor extends ErrorConstructor {
   external factory URIErrorConstructor({String message});
+  @override
   external URIError call(String message);
+  @override
   external URIError get prototype;
 }
 

@@ -5,12 +5,10 @@ library lib.dom.d.ts;
 import 'package:js/js.dart';
 import "dart:html";
 import "dart:indexed_db";
-import "dart:math";
 import "dart:svg";
 import "dart:typed_data";
 import "dart:web_audio";
 import "dart:web_gl";
-import "lib.dom.d.dart";
 import "lib.es5.d.dart";
 
 @JS()
@@ -3827,8 +3825,10 @@ class AbortSignalEventMap {
 class AbortSignal extends EventTarget {
   external bool get aborted;
   external dynamic Function(Event ev)? onabort;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory AbortSignal({
@@ -3952,8 +3952,10 @@ class Animation extends EventTarget {
   external void play();
   external void reverse();
   external void updatePlaybackRate(num playbackRate);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory Animation({
@@ -4045,6 +4047,7 @@ class Attr extends Node {
   external String get localName;
   external String get name;
   external String? get namespaceURI;
+  @override
   external Document get ownerDocument;
   external Element? get ownerElement;
   external String? get prefix;
@@ -4097,9 +4100,12 @@ class AudioBufferSourceNode extends AudioScheduledSourceNode {
   external num loopEnd;
   external num loopStart;
   external AudioParam get playbackRate;
+  @override
   external void start(num when, num offset, num duration);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory AudioBufferSourceNode({
@@ -4128,8 +4134,10 @@ class AudioContext extends BaseAudioContext {
   external AudioTimestamp getOutputTimestamp();
   external Promise<void> resume();
   external Promise<void> suspend();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory AudioContext({
@@ -4279,8 +4287,10 @@ class AudioScheduledSourceNode extends AudioNode {
   external dynamic Function(Event ev)? onended;
   external void start(num when);
   external void stop(num when);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory AudioScheduledSourceNode({
@@ -4315,8 +4325,10 @@ class AudioWorkletNode extends AudioNode {
   external dynamic Function(Event ev)? onprocessorerror;
   external AudioParamMap get parameters;
   external MessagePort get port;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory AudioWorkletNode({
@@ -4426,8 +4438,10 @@ class BaseAudioContext extends EventTarget {
       ByteBuffer audioData,
       DecodeSuccessCallback? successCallback,
       DecodeErrorCallback? errorCallback);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory BaseAudioContext({
@@ -4447,6 +4461,7 @@ external IBaseAudioContext JBaseAudioContext;
 @JS()
 @anonymous
 class BeforeUnloadEvent extends Event {
+  @override
   external dynamic returnValue;
   external factory BeforeUnloadEvent({
     dynamic returnValue,
@@ -4545,8 +4560,10 @@ class BroadcastChannel extends EventTarget {
   external dynamic Function(MessageEvent ev)? onmessageerror;
   external void close();
   external void postMessage(dynamic message);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory BroadcastChannel({
@@ -4562,7 +4579,9 @@ external IBroadcastChannel JBroadcastChannel;
 @JS()
 @anonymous
 class ByteLengthQueuingStrategy extends QueuingStrategy<TypedData> {
+  @override
   external num get highWaterMark;
+  @override
   external QueuingStrategySize<TypedData> get size;
   external factory ByteLengthQueuingStrategy({
     num highWaterMark,
@@ -4586,8 +4605,10 @@ external ICDATASection JCDATASection;
 @anonymous
 class CSSAnimation extends Animation {
   external String get animationName;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory CSSAnimation({
@@ -5762,8 +5783,10 @@ external ICSSSupportsRule JCSSSupportsRule;
 @anonymous
 class CSSTransition extends Animation {
   external String get transitionProperty;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory CSSTransition({
@@ -6053,6 +6076,7 @@ external IChannelSplitterNode JChannelSplitterNode;
 class CharacterData extends Node {
   external String data;
   external num get length;
+  @override
   external Document get ownerDocument;
   external void appendData(String data);
   external void deleteData(num offset, num count);
@@ -6212,8 +6236,10 @@ external ICompositionEvent JCompositionEvent;
 @anonymous
 class ConstantSourceNode extends AudioScheduledSourceNode {
   external AudioParam get offset;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory ConstantSourceNode({
@@ -6241,7 +6267,9 @@ external IConvolverNode JConvolverNode;
 @JS()
 @anonymous
 class CountQueuingStrategy extends QueuingStrategy {
+  @override
   external num get highWaterMark;
+  @override
   external QueuingStrategySize get size;
   external factory CountQueuingStrategy({
     num highWaterMark,
@@ -6915,6 +6943,7 @@ class Document extends Node {
   external dynamic Function(Event ev)? onpointerlockerror;
   external dynamic Function(Event ev)? onreadystatechange;
   external dynamic Function(Event ev)? onvisibilitychange;
+  @override
   external dynamic get ownerDocument;
   external bool get pictureInPictureEnabled;
   external HTMLCollectionOf<EmbedElement> get plugins;
@@ -6995,8 +7024,10 @@ class Document extends Node {
     String? text8,
     String? text9,
   ]);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory Document({
@@ -7126,6 +7157,7 @@ external IDocumentTimeline JDocumentTimeline;
 @anonymous
 class DocumentType extends Node {
   external String get name;
+  @override
   external Document get ownerDocument;
   external String get publicId;
   external String get systemId;
@@ -7292,6 +7324,7 @@ class Element extends Node {
   external dynamic Function(Event ev)? onfullscreenchange;
   external dynamic Function(Event ev)? onfullscreenerror;
   external String outerHTML;
+  @override
   external Document get ownerDocument;
   external DomTokenList get part;
   external String? get prefix;
@@ -7343,8 +7376,10 @@ class Element extends Node {
   external void setPointerCapture(num pointerId);
   external bool toggleAttribute(String qualifiedName, bool force);
   external bool webkitMatchesSelector(String selectors);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory Element({
@@ -7510,8 +7545,10 @@ class EventSource extends EventTarget {
   external num get CLOSED;
   external num get CONNECTING;
   external num get OPEN;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory EventSource({
@@ -7623,8 +7660,10 @@ class FileReader extends EventTarget {
   external num get DONE;
   external num get EMPTY;
   external num get LOADING;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory FileReader({
@@ -7795,8 +7834,10 @@ class FontFaceSet extends EventTarget {
       void Function(FontFace value, FontFace key, FontFaceSet parent)
           callbackfn,
       dynamic thisArg);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory FontFaceSet({
@@ -8433,10 +8474,13 @@ class HTMLAnchorElement extends HtmlElement {
   external String rev;
   external String shape;
   external String target;
+  @override
   external String text;
   external String type;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLAnchorElement({
@@ -8473,8 +8517,10 @@ class HTMLAreaElement extends HtmlElement {
   external DomTokenList get relList;
   external String shape;
   external String target;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLAreaElement({
@@ -8497,8 +8543,10 @@ external IHTMLAreaElement JHTMLAreaElement;
 @JS()
 @anonymous
 class HTMLAudioElement extends MediaElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLAudioElement();
@@ -8511,8 +8559,10 @@ external IHTMLAudioElement JHTMLAudioElement;
 @anonymous
 class HTMLBRElement extends HtmlElement {
   external String clear;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLBRElement({
@@ -8528,8 +8578,10 @@ external IHTMLBRElement JHTMLBRElement;
 class HTMLBaseElement extends HtmlElement {
   external String href;
   external String target;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLBaseElement({
@@ -8558,10 +8610,13 @@ class HTMLBodyElement extends HtmlElement {
   external String bgColor;
   external String link;
   external dynamic Function(Event ev)? onorientationchange;
+  @override
   external String text;
   external String vLink;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLBodyElement({
@@ -8598,8 +8653,10 @@ class HTMLButtonElement extends HtmlElement {
   external bool checkValidity();
   external bool reportValidity();
   external void setCustomValidity(String error);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLButtonElement({
@@ -8633,8 +8690,10 @@ class HTMLCanvasElement extends HtmlElement {
       String contextId, CanvasRenderingContext2DSettings options);
   external void toBlob(BlobCallback callback, String type, dynamic quality);
   external String toDataURL(String type, dynamic quality);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLCanvasElement({
@@ -8669,6 +8728,7 @@ external IHTMLCollection JHTMLCollection;
 @JS()
 @anonymous
 class HTMLCollectionOf<T extends Element> extends HTMLCollectionBase {
+  @override
   external T? item(num index);
   external T? namedItem(String name);
   external factory HTMLCollectionOf();
@@ -8678,8 +8738,10 @@ class HTMLCollectionOf<T extends Element> extends HTMLCollectionBase {
 @anonymous
 class HTMLDListElement extends HtmlElement {
   external bool compact;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDListElement({
@@ -8694,8 +8756,10 @@ external IHTMLDListElement JHTMLDListElement;
 @anonymous
 class HTMLDataElement extends HtmlElement {
   external String value;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDataElement({
@@ -8710,8 +8774,10 @@ external IHTMLDataElement JHTMLDataElement;
 @anonymous
 class HTMLDataListElement extends HtmlElement {
   external HTMLCollectionOf<OptionElement> get options;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDataListElement({
@@ -8726,8 +8792,10 @@ external IHTMLDataListElement JHTMLDataListElement;
 @anonymous
 class HTMLDetailsElement extends HtmlElement {
   external bool open;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDetailsElement({
@@ -8741,8 +8809,10 @@ external IHTMLDetailsElement JHTMLDetailsElement;
 @JS()
 @anonymous
 class HTMLDialogElement extends HtmlElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDialogElement();
@@ -8752,8 +8822,10 @@ class HTMLDialogElement extends HtmlElement {
 @anonymous
 class HTMLDirectoryElement extends HtmlElement {
   external bool compact;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDirectoryElement({
@@ -8768,8 +8840,10 @@ external IHTMLDirectoryElement JHTMLDirectoryElement;
 @anonymous
 class HTMLDivElement extends HtmlElement {
   external String align;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDivElement({
@@ -8783,8 +8857,10 @@ external IHTMLDivElement JHTMLDivElement;
 @JS()
 @anonymous
 class HTMLDocument extends Document {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLDocument();
@@ -8817,8 +8893,10 @@ class HTMLElement extends Element {
   external String title;
   external bool translate;
   external void click();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLElement({
@@ -8855,8 +8933,10 @@ class HTMLEmbedElement extends HtmlElement {
   external String type;
   external String width;
   external Document? getSVGDocument();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLEmbedElement({
@@ -8886,8 +8966,10 @@ class HTMLFieldSetElement extends HtmlElement {
   external bool checkValidity();
   external bool reportValidity();
   external void setCustomValidity(String error);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLFieldSetElement({
@@ -8911,8 +8993,10 @@ class HTMLFontElement extends HtmlElement {
   external String color;
   external String face;
   external String size;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLFontElement({
@@ -8954,8 +9038,10 @@ class HTMLFormElement extends HtmlElement {
   external void requestSubmit(HtmlElement? submitter);
   external void reset();
   external void submit();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLFormElement({
@@ -8989,8 +9075,10 @@ class HTMLFrameElement extends HtmlElement {
   external bool noResize;
   external String scrolling;
   external String src;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLFrameElement({
@@ -9021,8 +9109,10 @@ class HTMLFrameSetElementEventMap extends HTMLElementEventMap {
 class HTMLFrameSetElement extends HtmlElement {
   external String cols;
   external String rows;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLFrameSetElement({
@@ -9042,8 +9132,10 @@ class HTMLHRElement extends HtmlElement {
   external bool noShade;
   external String size;
   external String width;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLHRElement({
@@ -9061,8 +9153,10 @@ external IHTMLHRElement JHTMLHRElement;
 @JS()
 @anonymous
 class HTMLHeadElement extends HtmlElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLHeadElement();
@@ -9075,8 +9169,10 @@ external IHTMLHeadElement JHTMLHeadElement;
 @anonymous
 class HTMLHeadingElement extends HtmlElement {
   external String align;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLHeadingElement({
@@ -9091,8 +9187,10 @@ external IHTMLHeadingElement JHTMLHeadingElement;
 @anonymous
 class HTMLHtmlElement extends HtmlElement {
   external String version;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLHtmlElement({
@@ -9155,8 +9253,10 @@ class HTMLIFrameElement extends HtmlElement {
   external String srcdoc;
   external String width;
   external Document? getSVGDocument();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLIFrameElement({
@@ -9212,8 +9312,10 @@ class HTMLImageElement extends HtmlElement {
   external num get x;
   external num get y;
   external Promise<void> decode();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLImageElement({
@@ -9307,8 +9409,10 @@ class HTMLInputElement extends HtmlElement {
   external void setSelectionRange(num? start, num? end, String direction);
   external void stepDown(num n);
   external void stepUp(num n);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLInputElement({
@@ -9371,8 +9475,10 @@ external IHTMLInputElement JHTMLInputElement;
 class HTMLLIElement extends HtmlElement {
   external String type;
   external num value;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLLIElement({
@@ -9390,8 +9496,10 @@ class HTMLLabelElement extends HtmlElement {
   external HtmlElement? get control;
   external FormElement? get form;
   external String htmlFor;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLLabelElement({
@@ -9409,8 +9517,10 @@ external IHTMLLabelElement JHTMLLabelElement;
 class HTMLLegendElement extends HtmlElement {
   external String align;
   external FormElement? get form;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLLegendElement({
@@ -9442,8 +9552,10 @@ class HTMLLinkElement extends HtmlElement {
   external DomTokenList get sizes;
   external String target;
   external String type;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLLinkElement({
@@ -9475,8 +9587,10 @@ external IHTMLLinkElement JHTMLLinkElement;
 class HTMLMapElement extends HtmlElement {
   external HtmlCollection get areas;
   external String name;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLMapElement({
@@ -9504,8 +9618,10 @@ class HTMLMarqueeElement extends HtmlElement {
   external String width;
   external void start();
   external void stop();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLMarqueeElement({
@@ -9587,8 +9703,10 @@ class HTMLMediaElement extends HtmlElement {
   external num get NETWORK_IDLE;
   external num get NETWORK_LOADING;
   external num get NETWORK_NO_SOURCE;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLMediaElement({
@@ -9641,8 +9759,10 @@ external IHTMLMediaElement JHTMLMediaElement;
 @anonymous
 class HTMLMenuElement extends HtmlElement {
   external bool compact;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLMenuElement({
@@ -9660,8 +9780,10 @@ class HTMLMetaElement extends HtmlElement {
   external String httpEquiv;
   external String name;
   external String scheme;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLMetaElement({
@@ -9685,8 +9807,10 @@ class HTMLMeterElement extends HtmlElement {
   external num min;
   external num optimum;
   external num value;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLMeterElement({
@@ -9708,8 +9832,10 @@ external IHTMLMeterElement JHTMLMeterElement;
 class HTMLModElement extends HtmlElement {
   external String cite;
   external String dateTime;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLModElement({
@@ -9728,8 +9854,10 @@ class HTMLOListElement extends HtmlElement {
   external bool reversed;
   external num start;
   external String type;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLOListElement({
@@ -9772,8 +9900,10 @@ class HTMLObjectElement extends HtmlElement {
   external Document? getSVGDocument();
   external bool reportValidity();
   external void setCustomValidity(String error);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLObjectElement({
@@ -9810,8 +9940,10 @@ external IHTMLObjectElement JHTMLObjectElement;
 class HTMLOptGroupElement extends HtmlElement {
   external bool disabled;
   external String label;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLOptGroupElement({
@@ -9832,10 +9964,13 @@ class HTMLOptionElement extends HtmlElement {
   external num get index;
   external String label;
   external bool selected;
+  @override
   external String text;
   external String value;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLOptionElement({
@@ -9856,6 +9991,7 @@ external IHTMLOptionElement JHTMLOptionElement;
 @JS()
 @anonymous
 class HTMLOptionsCollection extends HTMLCollectionOf<OptionElement> {
+  @override
   external num length;
   external num selectedIndex;
   external void add(dynamic element, dynamic before);
@@ -9900,8 +10036,10 @@ class HTMLOutputElement extends HtmlElement {
   external bool checkValidity();
   external bool reportValidity();
   external void setCustomValidity(String error);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLOutputElement({
@@ -9925,8 +10063,10 @@ external IHTMLOutputElement JHTMLOutputElement;
 @anonymous
 class HTMLParagraphElement extends HtmlElement {
   external String align;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLParagraphElement({
@@ -9944,8 +10084,10 @@ class HTMLParamElement extends HtmlElement {
   external String type;
   external String value;
   external String valueType;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLParamElement({
@@ -9962,8 +10104,10 @@ external IHTMLParamElement JHTMLParamElement;
 @JS()
 @anonymous
 class HTMLPictureElement extends HtmlElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLPictureElement();
@@ -9976,8 +10120,10 @@ external IHTMLPictureElement JHTMLPictureElement;
 @anonymous
 class HTMLPreElement extends HtmlElement {
   external num width;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLPreElement({
@@ -9995,8 +10141,10 @@ class HTMLProgressElement extends HtmlElement {
   external num max;
   external num get position;
   external num value;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLProgressElement({
@@ -10014,8 +10162,10 @@ external IHTMLProgressElement JHTMLProgressElement;
 @anonymous
 class HTMLQuoteElement extends HtmlElement {
   external String cite;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLQuoteElement({
@@ -10039,10 +10189,13 @@ class HTMLScriptElement extends HtmlElement {
   external bool noModule;
   external String referrerPolicy;
   external String src;
+  @override
   external String text;
   external String type;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLScriptElement({
@@ -10088,11 +10241,14 @@ class HTMLSelectElement extends HtmlElement {
   external bool checkValidity();
   external Element? item(num index);
   external OptionElement? namedItem(String name);
+  @override
   external void remove();
   external bool reportValidity();
   external void setCustomValidity(String error);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLSelectElement({
@@ -10125,8 +10281,10 @@ class HTMLSlotElement extends HtmlElement {
   external String name;
   external List<Element> assignedElements(AssignedNodesOptions options);
   external List<Node> assignedNodes(AssignedNodesOptions options);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLSlotElement({
@@ -10145,8 +10303,10 @@ class HTMLSourceElement extends HtmlElement {
   external String src;
   external String srcset;
   external String type;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLSourceElement({
@@ -10164,8 +10324,10 @@ external IHTMLSourceElement JHTMLSourceElement;
 @JS()
 @anonymous
 class HTMLSpanElement extends HtmlElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLSpanElement();
@@ -10179,8 +10341,10 @@ external IHTMLSpanElement JHTMLSpanElement;
 class HTMLStyleElement extends HtmlElement {
   external String media;
   external String type;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLStyleElement({
@@ -10196,8 +10360,10 @@ external IHTMLStyleElement JHTMLStyleElement;
 @anonymous
 class HTMLTableCaptionElement extends HtmlElement {
   external String align;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableCaptionElement({
@@ -10226,8 +10392,10 @@ class HTMLTableCellElement extends HtmlElement {
   external String scope;
   external String vAlign;
   external String width;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableCellElement({
@@ -10261,8 +10429,10 @@ class HTMLTableColElement extends HtmlElement {
   external num span;
   external String vAlign;
   external String width;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableColElement({
@@ -10281,8 +10451,10 @@ external IHTMLTableColElement JHTMLTableColElement;
 @JS()
 @anonymous
 class HTMLTableDataCellElement extends TableCellElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableDataCellElement();
@@ -10314,8 +10486,10 @@ class HTMLTableElement extends HtmlElement {
   external void deleteTFoot();
   external void deleteTHead();
   external TableRowElement insertRow(num index);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableElement({
@@ -10342,8 +10516,10 @@ external IHTMLTableElement JHTMLTableElement;
 @JS()
 @anonymous
 class HTMLTableHeaderCellElement extends TableCellElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableHeaderCellElement();
@@ -10362,8 +10538,10 @@ class HTMLTableRowElement extends HtmlElement {
   external String vAlign;
   external void deleteCell(num index);
   external TableCellElement insertCell(num index);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableRowElement({
@@ -10391,8 +10569,10 @@ class HTMLTableSectionElement extends HtmlElement {
   external String vAlign;
   external void deleteRow(num index);
   external TableRowElement insertRow(num index);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTableSectionElement({
@@ -10411,8 +10591,10 @@ external IHTMLTableSectionElement JHTMLTableSectionElement;
 @anonymous
 class HTMLTemplateElement extends HtmlElement {
   external DocumentFragment get content;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTemplateElement({
@@ -10456,8 +10638,10 @@ class HTMLTextAreaElement extends HtmlElement {
   external void setCustomValidity(String error);
   external void setRangeText(String replacement);
   external void setSelectionRange(num? start, num? end, String direction);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTextAreaElement({
@@ -10495,8 +10679,10 @@ external IHTMLTextAreaElement JHTMLTextAreaElement;
 @anonymous
 class HTMLTimeElement extends HtmlElement {
   external String dateTime;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTimeElement({
@@ -10510,9 +10696,12 @@ external IHTMLTimeElement JHTMLTimeElement;
 @JS()
 @anonymous
 class HTMLTitleElement extends HtmlElement {
+  @override
   external String text;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTitleElement({
@@ -10536,8 +10725,10 @@ class HTMLTrackElement extends HtmlElement {
   external num get LOADED;
   external num get LOADING;
   external num get NONE;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLTrackElement({
@@ -10562,8 +10753,10 @@ external IHTMLTrackElement JHTMLTrackElement;
 class HTMLUListElement extends HtmlElement {
   external bool compact;
   external String type;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLUListElement({
@@ -10578,8 +10771,10 @@ external IHTMLUListElement JHTMLUListElement;
 @JS()
 @anonymous
 class HTMLUnknownElement extends HtmlElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLUnknownElement();
@@ -10613,8 +10808,10 @@ class HTMLVideoElement extends MediaElement {
   external num width;
   external VideoPlaybackQuality getVideoPlaybackQuality();
   external Promise<PictureInPictureWindow> requestPictureInPicture();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory HTMLVideoElement({
@@ -10751,8 +10948,10 @@ class IDBDatabase extends EventTarget {
       String name, IDBObjectStoreParameters options);
   external void deleteObjectStore(String name);
   external Transaction transaction(dynamic storeNames, IDBTransactionMode mode);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory IDBDatabase({
@@ -10917,8 +11116,10 @@ class IDBRequest<T> extends EventTarget {
   external T get result;
   external dynamic get source;
   external Transaction? get transaction;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory IDBRequest({
@@ -10961,8 +11162,10 @@ class IDBTransaction extends EventTarget {
   external void abort();
   external void commit();
   external ObjectStore objectStore(String name);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory IDBTransaction({
@@ -11256,8 +11459,10 @@ class MathMLElementEventMap extends ElementEventMap {
 @JS()
 @anonymous
 class MathMLElement extends Element {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MathMLElement();
@@ -11317,8 +11522,10 @@ class MediaDevices extends EventTarget {
   external MediaTrackSupportedConstraints getSupportedConstraints();
   external Promise<MediaStream> getUserMedia(
       MediaStreamConstraints constraints);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MediaDevices({
@@ -11417,8 +11624,10 @@ class MediaKeySession extends EventTarget {
   external Promise<bool> load(String sessionId);
   external Promise<void> remove();
   external Promise<void> update(BufferSource response);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MediaKeySession({
@@ -11533,8 +11742,10 @@ class MediaQueryList extends EventTarget {
   external void addListener(dynamic Function(MediaQueryListEvent ev)? callback);
   external void removeListener(
       dynamic Function(MediaQueryListEvent ev)? callback);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MediaQueryList({
@@ -11599,8 +11810,10 @@ class MediaRecorder extends EventTarget {
   external void resume();
   external void start(num timeslice);
   external void stop();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MediaRecorder({
@@ -11678,8 +11891,10 @@ class MediaSource extends EventTarget {
   external void endOfStream(EndOfStreamError error);
   external void removeSourceBuffer(SourceBuffer sourceBuffer);
   external void setLiveSeekableRange(num start, num end);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MediaSource({
@@ -11721,8 +11936,10 @@ class MediaStream extends EventTarget {
   external List<MediaStreamTrack> getTracks();
   external List<MediaStreamTrack> getVideoTracks();
   external void removeTrack(MediaStreamTrack track);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MediaStream({
@@ -11792,8 +12009,10 @@ class MediaStreamTrack extends EventTarget {
   external MediaTrackConstraints getConstraints();
   external MediaTrackSettings getSettings();
   external void stop();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MediaStreamTrack({
@@ -11887,8 +12106,10 @@ class MessagePort extends EventTarget {
   external void close();
   external void postMessage(dynamic message, List<Transferable> transfer);
   external void start();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory MessagePort({
@@ -12382,7 +12603,9 @@ external INodeList JNodeList;
 @JS()
 @anonymous
 class NodeListOf<TNode extends Node> extends NodeList {
+  @override
   external TNode item(num index);
+  @override
   external void forEach(
       void Function(TNode value, num key, NodeListOf<TNode> parent) callbackfn,
       dynamic thisArg);
@@ -12437,8 +12660,10 @@ class Notification extends EventTarget {
   external String get tag;
   external String get title;
   external void close();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory Notification({
@@ -12566,8 +12791,10 @@ class OfflineAudioContext extends BaseAudioContext {
   external Promise<void> resume();
   external Promise<AudioBuffer> startRendering();
   external Promise<void> suspend(num suspendTime);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory OfflineAudioContext({
@@ -12592,8 +12819,10 @@ class OscillatorNode extends AudioScheduledSourceNode {
   external AudioParam get frequency;
   external OscillatorType type;
   external void setPeriodicWave(PeriodicWave periodicWave);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory OscillatorNode({
@@ -12792,8 +13021,10 @@ class PaymentRequest extends EventTarget {
   external Promise<void> abort();
   external Promise<bool> canMakePayment();
   external Promise<PaymentResponse> show(dynamic detailsPromise);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory PaymentRequest({
@@ -12863,8 +13094,10 @@ class Performance extends EventTarget {
   external DOMHighResTimeStamp now();
   external void setResourceTimingBufferSize(num maxSize);
   external dynamic toJSON();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory Performance({
@@ -12975,6 +13208,7 @@ class PerformanceNavigationTiming extends PerformanceResourceTiming {
   external NavigationType get type;
   external DOMHighResTimeStamp get unloadEventEnd;
   external DOMHighResTimeStamp get unloadEventStart;
+  @override
   external dynamic toJSON();
   external factory PerformanceNavigationTiming({
     DOMHighResTimeStamp domComplete,
@@ -13047,6 +13281,7 @@ class PerformanceResourceTiming extends PerformanceEntry {
   external List<PerformanceServerTiming> get serverTiming;
   external num get transferSize;
   external DOMHighResTimeStamp get workerStart;
+  @override
   external dynamic toJSON();
   external factory PerformanceResourceTiming({
     DOMHighResTimeStamp connectEnd,
@@ -13166,8 +13401,10 @@ class PermissionStatusEventMap {
 class PermissionStatus extends EventTarget {
   external dynamic Function(Event ev)? onchange;
   external PermissionState get state;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory PermissionStatus({
@@ -13204,8 +13441,10 @@ class PictureInPictureWindow extends EventTarget {
   external num get height;
   external dynamic Function(Event ev)? onresize;
   external num get width;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory PictureInPictureWindow({
@@ -13299,6 +13538,7 @@ external IPopStateEvent JPopStateEvent;
 @JS()
 @anonymous
 class ProcessingInstruction extends CharacterData {
+  @override
   external Document get ownerDocument;
   external String get target;
   external factory ProcessingInstruction({
@@ -13315,6 +13555,7 @@ external IProcessingInstruction JProcessingInstruction;
 class ProgressEvent<T extends EventTarget> extends Event {
   external bool get lengthComputable;
   external num get loaded;
+  @override
   external T? get target;
   external num get total;
   external factory ProgressEvent({
@@ -13429,8 +13670,10 @@ class RTCDTMFSender extends EventTarget {
   external dynamic Function(RtcDtmfToneChangeEvent ev)? ontonechange;
   external String get toneBuffer;
   external void insertDTMF(String tones, num duration, num interToneGap);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory RTCDTMFSender({
@@ -13493,8 +13736,10 @@ class RTCDataChannel extends EventTarget {
   external RTCDataChannelState get readyState;
   external void close();
   external void send(String data);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory RTCDataChannel({
@@ -13546,8 +13791,10 @@ class RTCDtlsTransportEventMap {
 class RTCDtlsTransport extends EventTarget {
   external dynamic Function(Event ev)? onstatechange;
   external RTCDtlsTransportState get state;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory RTCDtlsTransport({
@@ -13691,8 +13938,10 @@ class RTCPeerConnection extends EventTarget {
       RTCLocalSessionDescriptionInit description);
   external Promise<void> setRemoteDescription(
       RTCSessionDescriptionInit description);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory RTCPeerConnection({
@@ -14005,8 +14254,10 @@ class RemotePlayback extends EventTarget {
   external Promise<void> prompt();
   external Promise<num> watchAvailability(
       RemotePlaybackAvailabilityCallback callback);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory RemotePlayback({
@@ -14549,11 +14800,14 @@ class SVGElementEventMap extends ElementEventMap {
 @JS()
 @anonymous
 class SVGElement extends Element {
+  @override
   external dynamic get className;
   external SvgSvgElement? get ownerSVGElement;
   external SvgElement? get viewportElement;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SVGElement({
@@ -14893,8 +15147,10 @@ external ISVGFEFloodElement JSVGFEFloodElement;
 @JS()
 @anonymous
 class SVGFEFuncAElement extends SVGComponentTransferFunctionElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SVGFEFuncAElement();
@@ -14906,8 +15162,10 @@ external ISVGFEFuncAElement JSVGFEFuncAElement;
 @JS()
 @anonymous
 class SVGFEFuncBElement extends SVGComponentTransferFunctionElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SVGFEFuncBElement();
@@ -14919,8 +15177,10 @@ external ISVGFEFuncBElement JSVGFEFuncBElement;
 @JS()
 @anonymous
 class SVGFEFuncGElement extends SVGComponentTransferFunctionElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SVGFEFuncGElement();
@@ -14932,8 +15192,10 @@ external ISVGFEFuncGElement JSVGFEFuncGElement;
 @JS()
 @anonymous
 class SVGFEFuncRElement extends SVGComponentTransferFunctionElement {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SVGFEFuncRElement();
@@ -15458,8 +15720,10 @@ class SVGLinearGradientElement extends SVGGradientElement {
   external AnimatedLength get x2;
   external AnimatedLength get y1;
   external AnimatedLength get y2;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SVGLinearGradientElement({
@@ -15739,8 +16003,10 @@ class SVGRadialGradientElement extends SVGGradientElement {
   external AnimatedLength get fx;
   external AnimatedLength get fy;
   external AnimatedLength get r;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SVGRadialGradientElement({
@@ -16252,8 +16518,10 @@ class ScreenOrientation extends EventTarget {
   external OrientationType get type;
   external Promise<void> lock(OrientationLockType orientation);
   external void unlock();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory ScreenOrientation({
@@ -16280,8 +16548,10 @@ class ScriptProcessorNodeEventMap {
 class ScriptProcessorNode extends AudioNode {
   external num get bufferSize;
   external dynamic Function(AudioProcessingEvent ev)? onaudioprocess;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory ScriptProcessorNode({
@@ -16384,8 +16654,10 @@ class ServiceWorker extends EventTarget {
   external String get scriptURL;
   external ServiceWorkerState get state;
   external void postMessage(dynamic message, List<Transferable> transfer);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory ServiceWorker({
@@ -16425,8 +16697,10 @@ class ServiceWorkerContainer extends EventTarget {
   external Promise<ServiceWorkerRegistration> register(
       dynamic scriptURL, RegistrationOptions options);
   external void startMessages();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory ServiceWorkerContainer({
@@ -16466,8 +16740,10 @@ class ServiceWorkerRegistration extends EventTarget {
       String title, NotificationOptions options);
   external Promise<bool> unregister();
   external Promise<void> update();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory ServiceWorkerRegistration({
@@ -16502,8 +16778,10 @@ external IShadowRoot JShadowRoot;
 @anonymous
 class SharedWorker extends EventTarget {
   external MessagePort get port;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SharedWorker({
@@ -16558,8 +16836,10 @@ class SourceBuffer extends EventTarget {
   external void appendBuffer(BufferSource data);
   external void changeType(String type);
   external void remove(num start, num end);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SourceBuffer({
@@ -16597,8 +16877,10 @@ class SourceBufferList extends EventTarget {
   external num get length;
   external dynamic Function(Event ev)? onaddsourcebuffer;
   external dynamic Function(Event ev)? onremovesourcebuffer;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SourceBufferList({
@@ -16688,8 +16970,10 @@ class SpeechSynthesis extends EventTarget {
   external void pause();
   external void resume();
   external void speak(SpeechSynthesisUtterance utterance);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SpeechSynthesis({
@@ -16772,8 +17056,10 @@ class SpeechSynthesisUtterance extends EventTarget {
   external String text;
   external SpeechSynthesisVoice? voice;
   external num volume;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory SpeechSynthesisUtterance({
@@ -17034,7 +17320,9 @@ class TextDecoderCommon {
 @JS()
 @anonymous
 class TextDecoderStream extends GenericTransformStream {
+  @override
   external ReadableStream<String> get readable;
+  @override
   external WritableStream<BufferSource> get writable;
   external factory TextDecoderStream({
     ReadableStream<String> readable,
@@ -17069,7 +17357,9 @@ class TextEncoderCommon {
 @JS()
 @anonymous
 class TextEncoderStream extends GenericTransformStream {
+  @override
   external ReadableStream<Uint8List> get readable;
+  @override
   external WritableStream<String> get writable;
   external factory TextEncoderStream({
     ReadableStream<Uint8List> readable,
@@ -17127,8 +17417,10 @@ class TextTrack extends EventTarget {
   external dynamic Function(Event ev)? oncuechange;
   external void addCue(TextTrackCue cue);
   external void removeCue(TextTrackCue cue);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory TextTrack({
@@ -17168,8 +17460,10 @@ class TextTrackCue extends EventTarget {
   external bool pauseOnExit;
   external num startTime;
   external TextTrack? get track;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory TextTrackCue({
@@ -17220,8 +17514,10 @@ class TextTrackList extends EventTarget {
   external dynamic Function(Event ev)? onchange;
   external dynamic Function(TrackEvent ev)? onremovetrack;
   external TextTrack? getTrackById(String id);
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory TextTrackList({
@@ -17498,8 +17794,10 @@ class VTTCue extends TextTrackCue {
   external String text;
   external DirectionSetting vertical;
   external DocumentFragment getCueAsHTML();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory VTTCue({
@@ -17618,8 +17916,10 @@ class VisualViewport extends EventTarget {
   external num get pageTop;
   external num get scale;
   external num get width;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory VisualViewport({
@@ -19765,8 +20065,10 @@ class WebSocket extends EventTarget {
   external num get CLOSING;
   external num get CONNECTING;
   external num get OPEN;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory WebSocket({
@@ -19895,7 +20197,7 @@ class Window extends EventTarget {
   external void postMessage(
       dynamic message, String targetOrigin, List<Transferable> transfer);
   external void print();
-  external String? prompt(String message, String _default);
+  external String? prompt(String message, String default);
   external void releaseEvents();
   external num requestIdleCallback(
       IdleRequestCallback callback, IdleRequestOptions options);
@@ -19905,8 +20207,10 @@ class Window extends EventTarget {
   external void scrollBy(ScrollToOptions options);
   external void scrollTo(ScrollToOptions options);
   external void stop();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory Window({
@@ -20141,8 +20445,10 @@ class Worker extends EventTarget {
   external dynamic Function(MessageEvent ev)? onmessageerror;
   external void postMessage(dynamic message, List<Transferable> transfer);
   external void terminate();
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory Worker({
@@ -20212,8 +20518,10 @@ external IWritableStreamDefaultWriter JWritableStreamDefaultWriter;
 @JS()
 @anonymous
 class XMLDocument extends Document {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory XMLDocument();
@@ -20258,8 +20566,10 @@ class XMLHttpRequest extends HttpRequestEventTarget {
   external num get LOADING;
   external num get OPENED;
   external num get UNSENT;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory XMLHttpRequest({
@@ -20317,8 +20627,10 @@ class XMLHttpRequestEventTarget extends EventTarget {
   external dynamic Function(ProgressEvent ev)? onloadstart;
   external dynamic Function(ProgressEvent ev)? onprogress;
   external dynamic Function(ProgressEvent ev)? ontimeout;
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory XMLHttpRequestEventTarget({
@@ -20338,8 +20650,10 @@ external IXMLHttpRequestEventTarget JXMLHttpRequestEventTarget;
 @JS()
 @anonymous
 class XMLHttpRequestUpload extends HttpRequestEventTarget {
+  @override
   external void addEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
+  @override
   external void removeEventListener<K extends String>(
       K type, dynamic Function(dynamic ev) listener, dynamic options);
   external factory XMLHttpRequestUpload();
@@ -21560,7 +21874,7 @@ external void postMessage1(dynamic message, WindowPostMessageOptions options);
 @JS(r'print')
 external void print();
 @JS(r'prompt')
-external String? prompt(String message, String _default);
+external String? prompt(String message, String default);
 @JS(r'releaseEvents')
 external void releaseEvents();
 @JS(r'requestIdleCallback')
