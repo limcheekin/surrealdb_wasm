@@ -2,9 +2,8 @@
 library index.d.ts;
 
 // ignore_for_file: non_constant_identifier_names, private_optional_parameter, unused_element
+import 'dart:typed_data';
 import 'package:js/js.dart';
-import "lib.dom.d.dart";
-import "lib.es5.d.dart";
 
 @JS(r'setup')
 external void setup();
@@ -169,3 +168,24 @@ typedef AbortSignal = dynamic;
 typedef BufferSource = dynamic;
 typedef Module = dynamic;
 typedef RequestInfo = dynamic;
+
+// import "lib.dom.d.dart";
+@JS()
+@anonymous
+class Memory {
+  external ByteBuffer get buffer;
+  external num grow(num delta);
+  external factory Memory({
+    ByteBuffer buffer,
+  });
+}
+
+// import "lib.es5.d.dart";
+@JS()
+@anonymous
+class Promise<T> {
+  external Promise<dynamic> then<TResult1, TResult2>(
+      dynamic Function(T value)? onfulfilled,
+      dynamic Function(dynamic reason)? onrejected);
+  external factory Promise();
+}
