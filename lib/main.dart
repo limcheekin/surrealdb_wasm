@@ -1,137 +1,25 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:js/js_util.dart';
-import 'package:surrealdb_wasm/index.d.dart';
+import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 
-class NamespaceDatabase {
-  final String ns;
-  final String db;
-  NamespaceDatabase({
-    required this.ns,
-    required this.db,
-  });
-}
-
-class Name {
-  String? first;
-  String? last;
-
-  Name({first, last});
-}
-
-class Person {
-  String? title;
-  Name? name;
-  bool? marketing;
-  String? identifier;
-
-  Person({this.title, this.name, this.marketing, this.identifier});
-}
-
-final db = SurrealDB();
-
-Future<void> connect(String endpoint, dynamic opts) async {
-  debugPrint("db.connect()");
-  await promiseToFuture(
-    db.connect(
-      endpoint,
-      opts,
-    ),
-  );
-  debugPrint("db.connect()");
-}
-
-Future<String> create(String resource, String data) async {
-  debugPrint("db.create()");
-  final result = await promiseToFuture(
-    db.create(resource, data),
-  );
-  debugPrint("db.create() $result");
-  return result;
-}
-
-/*
-
-/// Allows assigning a function to be callable from `window.functionName()`
-@JS('onfulfilled')
-external set _onfulfilled(void Function(dynamic) f);
-
-/// Allows calling the assigned function from Dart as well.
-@JS()
-external void onfulfilled(dynamic);
-*/
 void main() async {
-  // Code that might throw an exception
+  final db = Surreal();
 
-  await connect("indxdb://surreal", null);
-  //db.connect("indxdb://surreal", null);
+  await db.connect("indxdb://surreal");
 
-  //debugPrint("db.health()");
-  //db.health();
-  debugPrint("db.use()");
-  db.use(jsonEncode({"ns": "surreal", "db": "surreal"}));
-  // Create a new person with a random id
-  final created = await create(
+  await db.use(ns: "surreal", db: "surreal");
+
+  final created = await db.create(
     "person",
-    jsonEncode({
-      "title": "Founder & CEO",
+    {
+      "title": "CTO",
       "name": {
-        "first": "Tobie",
-        "last": "Morgan Hitchcock",
+        "first": "Tom",
+        "last": "Jerry",
       },
       "marketing": true,
-    }),
+    },
   );
-
   debugPrint("created $created");
-
-  /*created = await create(
-      "person",
-      jsonEncode({
-        "title": "CTO",
-        "name": {
-          "first": "Tom",
-          "last": "Jerry",
-        },
-        "marketing": true,
-      }),
-    );
-    debugPrint("created 2 ${created.toString()}");
-
-    
-    // Update a person record with a specific id
-    final updated = db.merge("person:jaime", {
-      "marketing": true,
-    });
-    debugPrint("updated $updated");
-
-    // Select all people records
-    final people = db.select("person");
-    debugPrint("people $people");
-
-    // Perform a custom advanced query
-    final groups = db.query(
-        "SELECT marketing, count() FROM type::table(\$table) GROUP BY marketing",
-        {
-          "table": "person",
-        });
-    debugPrint("groups $groups");
-
-    // Delete all people upto but not including Jaime
-    final deleted = db.delete("person:..jaime");
-    debugPrint("deleted $deleted");
-
-    // Delete all people
-    db.delete("person");
-
-    // REF: https://surrealdb.com/docs/surrealql/functions/vector
-    //		https://github.com/surrealdb/surrealdb/issues/1903
-    final cos =
-        db.query("RETURN vector::similarity::cosine([1,2,3],[4,5,6])", {});
-
-    debugPrint("cos $cos");
-    */
 
   runApp(const MyApp());
 }

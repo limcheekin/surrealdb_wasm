@@ -4,7 +4,7 @@ import init, { Surreal } from "./index.js";
 await init();
 console.log("Surreal initialized!!!");
 
-class SurrealDB {
+class SurrealWrapper {
   /**
    * Construct the database engine
    *
@@ -45,13 +45,14 @@ class SurrealDB {
    * @returns {string} JSON string
    */
   async create(resource, data) {
-    result = await this.db.create(resource, JSON.parse(data));
+    const result = await this.db.create(resource, JSON.parse(data));
+    console.log("surrealdb.js create()", result);
     return JSON.stringify(result);
   }
 }
 
 if (typeof window !== "undefined") {
-  window.SurrealDB = SurrealDB;
+  window.SurrealWrapper = SurrealWrapper;
 }
 
 /* Sample codes 
