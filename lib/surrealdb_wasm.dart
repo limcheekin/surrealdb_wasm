@@ -1,3 +1,5 @@
+library surrealdb_wasm;
+
 import 'dart:convert';
 
 import 'package:js/js_util.dart';

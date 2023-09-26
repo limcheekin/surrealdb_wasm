@@ -54,6 +54,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_console_widget:
+    dependency: "direct main"
+    description:
+      name: flutter_console_widget
+      sha256: "6f3d53604c3ed1096c9a1095f91ea6ccac62ed6922282bdc6b2687b6d20ea508"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -68,7 +76,7 @@ packages:
     source: sdk
     version: "0.0.0"
   js:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: js
       sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
@@ -152,6 +160,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  surrealdb_wasm:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.1"
   term_glyph:
     dependency: transitive
     description:

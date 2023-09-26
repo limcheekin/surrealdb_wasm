@@ -4,7 +4,7 @@ import 'package:js/js.dart';
 class SurrealWrapper {
   external Promise<void> connect(String endpoint, [String? opts]);
   external Promise<void> use(String value);
-  external Promise<void> set(String key, dynamic value);
+  external Promise<void> set(String key, String value);
   external Promise<void> unset(String key);
   external Promise<String> signup(String credentials);
   external Promise<String> signin(String credentials);
