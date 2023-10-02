@@ -43,14 +43,13 @@ class Surreal {
     );
   }
 
-  Future<Map<String, dynamic>> create(
-      String resource, Map<String, dynamic> data) async {
+  Future<Object?> create(String resource, Map<String, dynamic> data) async {
     final result = await promiseToFuture(
       surreal.create(
         resource,
         jsonEncode(data),
       ),
     );
-    return jsonDecode(result);
+    return dartify(result);
   }
 }
