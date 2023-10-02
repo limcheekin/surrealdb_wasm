@@ -35,12 +35,13 @@ class _HomePageState extends State<HomePage> {
   final FlutterConsoleController controller = FlutterConsoleController();
   final db = Surreal();
 
-  Future<void> execute(Function function) async {
+  Future<void> execute(Function function, [String? message]) async {
     String functionString = function.toString();
     controller.print(
-      message: functionString.substring(
-        functionString.indexOf("db."),
-      ),
+      message: message ??
+          functionString.substring(
+            functionString.indexOf("db."),
+          ),
       endline: false,
     );
     final result = await function();
@@ -49,6 +50,7 @@ class _HomePageState extends State<HomePage> {
       endline: true,
     );
     if (result != null) {
+      debugPrint("homepage: result $result");
       controller.print(
         message: "👀 $result",
         endline: true,
@@ -82,12 +84,21 @@ class _HomePageState extends State<HomePage> {
           );
         },
       );
+
+      await execute(
+        () {
+          return db.select("person");
+        },
+      );
     });
   }
 
   void echoLoop() {
     controller.scan().then((value) {
-      controller.print(message: value, endline: true);
+      execute(
+        () => db.query(value),
+        value,
+      );
       controller.focusNode.requestFocus();
       echoLoop();
     });

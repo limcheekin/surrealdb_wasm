@@ -1,6 +1,7 @@
 library surrealdb_wasm;
 
 import 'dart:convert';
+import 'dart:js';
 
 import 'package:js/js_util.dart';
 import 'package:surrealdb_wasm/js.dart';
@@ -19,37 +20,54 @@ class Surreal {
       await promiseToFuture(
         surreal.connect(
           endpoint,
-          jsonEncode(opts),
+          JsObject.jsify(opts),
         ),
       );
     }
   }
 
   Future<void> use({String? ns, String? db}) async {
-    Map<String, String> value;
-    if (ns != null && db != null) {
-      value = {"ns": ns, "db": db};
-    } else if (ns != null) {
-      value = {"ns": ns};
-    } else if (db != null) {
-      value = {"db": db};
-    } else {
-      value = {};
-    }
+    final value = NamespaceDatabase(ns: ns, db: db);
     await promiseToFuture(
       surreal.use(
-        jsonEncode(value),
+        value,
       ),
     );
   }
 
-  Future<Object?> create(String resource, Map<String, dynamic> data) async {
+  Future<Object?> create(String resource, dynamic data) async {
     final result = await promiseToFuture(
       surreal.create(
         resource,
-        jsonEncode(data),
+        data is Map || data is Iterable ? jsonEncode(data) : data,
       ),
     );
     return dartify(result);
   }
+
+  Future<Object?> select(String resource) async {
+    final result = await promiseToFuture(
+      surreal.select(
+        resource,
+      ),
+    );
+    return dartify(result);
+  }
+
+  Future<Object?> query(String sql, [Map<String, dynamic>? bindings]) async {
+    final result = await promiseToFuture(
+      surreal.query(
+        sql,
+        bindings,
+      ),
+    );
+    return dartify(result);
+  }
+}
+
+class NamespaceDatabase {
+  final String? ns;
+  final String? db;
+
+  NamespaceDatabase({this.ns, this.db});
 }

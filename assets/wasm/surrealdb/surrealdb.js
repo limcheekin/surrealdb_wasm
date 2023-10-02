@@ -17,37 +17,55 @@ class SurrealWrapper {
     Object.freeze(this);
   }
 
-  /**
-   * @param {string} endpoint
-   * @param {string} opts: JSON string
-   * @returns {void}
+  /* @param {string} endpoint
+   * @param {any} opts
+   * @returns {Promise<void>}
    */
   async connect(endpoint, opts) {
-    if (opts) {
-      opts = JSON.parse(opts);
-    }
     await this.db.connect(endpoint, opts);
   }
 
   /**
-   * @param {string} value: JSON string
-   * @returns {void}
+   * @param {any} value
+   * @returns {Promise<void>}
    */
   // await db.use({ ns: "test", db: "test" });
   async use(value) {
-    value = JSON.parse(value);
     await this.db.use(value);
   }
 
   /**
    * @param {string} resource
-   * @param {string} data: JSON string
-   * @returns {string} JSON string
+   * @param {any} data
+   * @returns {Promise<any>}
    */
   async create(resource, data) {
-    const result = await this.db.create(resource, JSON.parse(data));
+    const value = typeof data == "string" ? JSON.parse(data) : data;
+    console.log("surrealdb.js create() value", value);
+    const result = await this.db.create(resource, value);
     console.log("surrealdb.js create()", result);
-    return JSON.stringify(result);
+    return result;
+  }
+
+  /**
+   * @param {string} resource
+   * @returns {Promise<any>}
+   */
+  async select(resource) {
+    const result = await this.db.select(resource);
+    console.log("surrealdb.js select()", result);
+    return result;
+  }
+
+  /**
+   * @param {string} sql
+   * @param {any} bindings
+   * @returns {Promise<any>}
+   */
+  async query(sql, bindings) {
+    const result = await this.db.query(sql, bindings);
+    console.log("surrealdb.js query()", result);
+    return result;
   }
 }
 
