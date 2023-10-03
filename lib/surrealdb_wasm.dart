@@ -45,6 +45,26 @@ class Surreal {
     return dartify(result);
   }
 
+  Future<Object?> update(String resource, dynamic data) async {
+    final result = await promiseToFuture(
+      surreal.update(
+        resource,
+        data is Map || data is Iterable ? jsonEncode(data) : data,
+      ),
+    );
+    return dartify(result);
+  }
+
+  Future<Object?> merge(String resource, dynamic data) async {
+    final result = await promiseToFuture(
+      surreal.merge(
+        resource,
+        data is Map || data is Iterable ? jsonEncode(data) : data,
+      ),
+    );
+    return dartify(result);
+  }
+
   Future<Object?> select(String resource) async {
     final result = await promiseToFuture(
       surreal.select(
@@ -58,7 +78,16 @@ class Surreal {
     final result = await promiseToFuture(
       surreal.query(
         sql,
-        bindings,
+        jsonEncode(bindings),
+      ),
+    );
+    return dartify(result);
+  }
+
+  Future<Object?> delete(String resource) async {
+    final result = await promiseToFuture(
+      surreal.delete(
+        resource,
       ),
     );
     return dartify(result);
