@@ -1,0 +1,27 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter 🔧
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter --version
+
+      - name: Flutter Build 🏗️
+        run: cd example;flutter build web --web-renderer html --release
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        with:
+          branch: gh-pages
+          folder: "./example/build/web"
