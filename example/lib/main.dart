@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   final FlutterConsoleController controller = FlutterConsoleController();
   final db = Surreal();
 
-  Future<void> execute(Function function, [String? message]) async {
+  Future<dynamic> execute(Function function, [String? message]) async {
     String functionString = function.toString();
     controller.print(
       message: message ??
@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
         endline: true,
       );
     }
+    return result;
   }
 
   @override
@@ -65,11 +66,12 @@ class _HomePageState extends State<HomePage> {
       await execute(
         () => db.connect("indxdb://surreal"),
       );
+
       await execute(
         () => db.use(ns: "surreal", db: "surreal"),
       );
 
-      await execute(
+      final created = await execute(
         () {
           return db.create(
             "person",
@@ -86,9 +88,32 @@ class _HomePageState extends State<HomePage> {
       );
 
       await execute(
+        () => db.merge(
+          created['id'],
+          {
+            "marketing": false,
+          },
+        ),
+      );
+
+      await execute(
+        () => db.select("person"),
+      );
+
+      await execute(
         () {
-          return db.select("person");
+          final groups = db.query(
+            "SELECT marketing, count() FROM type::table(\$table) GROUP BY marketing",
+            {
+              "table": "person",
+            },
+          );
+          return groups;
         },
+      );
+
+      await execute(
+        () => db.delete("person"),
       );
     });
   }
