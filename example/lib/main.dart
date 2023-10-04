@@ -108,6 +108,37 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
+    // batch inserts
+    await execute(
+      () {
+        final people = [
+          {
+            "title": "CEO",
+            "name": {
+              "first": "John",
+              "last": "Dow",
+            },
+            "marketing": true,
+          },
+          {
+            "title": "COO",
+            "name": {
+              "first": "Gavin",
+              "last": "Law",
+            },
+            "marketing": true,
+          },
+        ];
+        final result = db.query(
+          "INSERT INTO person \$people",
+          {
+            "people": people,
+          },
+        );
+        return result;
+      },
+    );
+
     await execute(
       () => db.select("person"),
     );
