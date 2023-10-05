@@ -56,10 +56,19 @@ class _HomePageState extends State<HomePage> {
       );
       if (result != null) {
         debugPrint("homepage: result $result");
-        controller.print(
-          message: result.toString(),
-          endline: true,
-        );
+        if (result is Iterable) {
+          if (result.isNotEmpty) {
+            controller.print(
+              message: result.toString(),
+              endline: true,
+            );
+          }
+        } else {
+          controller.print(
+            message: result.toString(),
+            endline: true,
+          );
+        }
       }
     } catch (error, stackTrace) {
       controller.print(
