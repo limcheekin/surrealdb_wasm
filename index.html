@@ -34,15 +34,22 @@
 
     <script>
       // The value below is injected by flutter build, do not touch.
-      const serviceWorkerVersion = "424116411";
+      const serviceWorkerVersion = "4245202445";
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
     <script
       type="module"
-      src="/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.js"
+      src="/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js"
       defer
     ></script>
+    <script type="module" defer>
+      import init from "/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js";
+
+      // Initialize the Wasm module
+      await init();
+      console.log("Surreal initialized!!!");
+    </script>
   </head>
   <body>
     <script>

@@ -1,9 +1,3 @@
-import init, { Surreal } from "./index.js";
-
-// Initialize the Wasm module
-await init();
-console.log("Surreal initialized!!!");
-
 class SurrealWrapper {
   /**
    * Construct the database engine
@@ -86,10 +80,12 @@ class SurrealWrapper {
    * @returns {Promise<any>}
    */
   async query(sql, bindings) {
+    console.log("surrealdb.js query()", sql, bindings);
     const bindings_value =
       typeof bindings == "string" ? JSON.parse(bindings) : bindings;
+    console.log("surrealdb.js query() bindings_value", bindings_value);
     const result = await this.db.query(sql, bindings_value);
-    console.log("surrealdb.js query()", result);
+    console.log("surrealdb.js query() result", result);
     return result;
   }
 
