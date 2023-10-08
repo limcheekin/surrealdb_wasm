@@ -58,10 +58,22 @@ class _HomePageState extends State<HomePage> {
         debugPrint("homepage: result $result");
         if (result is Iterable) {
           if (result.isNotEmpty) {
-            controller.print(
-              message: result.toString(),
-              endline: true,
-            );
+            if (result.first is List) {
+              // nested list for multiple statements
+              if (result
+                  .reduce((value, element) => value + element)
+                  .isNotEmpty) {
+                controller.print(
+                  message: result.toString(),
+                  endline: true,
+                );
+              }
+            } else {
+              controller.print(
+                message: result.toString(),
+                endline: true,
+              );
+            }
           }
         } else {
           controller.print(
