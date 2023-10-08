@@ -1,0 +1,33 @@
+{
+  "name": "surrealdb_wasm",
+  "version": "1.0.0",
+  "description": "surrealdb_wasm javascript files minifier and gz packager.",
+  "scripts": {
+    "concat": "concat -o assets/wasm/surrealdb/surrealdb_wasm.js assets/wasm/surrealdb/index.js assets/wasm/surrealdb/surrealdb.js",
+    "minify": "terser assets/wasm/surrealdb/surrealdb_wasm.js -c -m -o assets/wasm/surrealdb/surrealdb_wasm.min.js",
+    "compress": "gzip -c assets/wasm/surrealdb/surrealdb_wasm.min.js > assets/wasm/surrealdb/surrealdb_wasm.min.js.gz",
+    "package": "npm run concat && npm run minify && npm run compress",
+    "release": "npm run package && rm assets/wasm/surrealdb/*.js",
+    "dev": "npm run concat && flutter run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limcheekin/surrealdb_wasm.git"
+  },
+  "keywords": [
+    "surrealdb",
+    "wasm",
+    "flutter",
+    "package"
+  ],
+  "author": "limcheekin@vobject.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/limcheekin/surrealdb_wasm/issues"
+  },
+  "homepage": "https://github.com/limcheekin/surrealdb_wasm#readme",
+  "devDependencies": {
+    "concat": "^1.0.3",
+    "terser": "^5.21.0"
+  }
+}
