@@ -1,8 +1,9 @@
 import 'package:js/js.dart';
 
-@JS()
+@JS('SurrealWrapper')
 class SurrealWrapper {
-  external Promise<void> connect(String endpoint, [dynamic opts]);
+  external factory SurrealWrapper();
+  external Promise<void> connect(String endpoint, dynamic opts);
   external Promise<void> use(dynamic value);
   external Promise<void> set(String key, dynamic value);
   external Promise<void> unset(String key);
@@ -10,7 +11,7 @@ class SurrealWrapper {
   external Promise<dynamic> signin(dynamic credentials);
   external Promise<void> invalidate();
   external Promise<void> authenticate(String token);
-  external Promise<dynamic> query(String sql, [dynamic bindings]);
+  external Promise<dynamic> query(String sql, dynamic bindings);
   external Promise<dynamic> select(String resource);
   external Promise<dynamic> create(String resource, dynamic data);
   external Promise<dynamic> update(String resource, dynamic data);

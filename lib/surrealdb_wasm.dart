@@ -9,28 +9,32 @@ import 'package:surrealdb_wasm/js.dart';
 class Surreal {
   final surreal = SurrealWrapper();
 
-  Future<void> connect(String endpoint, [Map<String, dynamic>? opts]) async {
-    if (opts == null) {
-      await promiseToFuture(
-        surreal.connect(
-          endpoint,
-        ),
-      );
-    } else {
-      await promiseToFuture(
-        surreal.connect(
-          endpoint,
-          JsObject.jsify(opts),
-        ),
-      );
-    }
+  Future<void> connect(String endpoint,
+      {Map<String, dynamic> options = const {}}) async {
+    await promiseToFuture(
+      surreal.connect(
+        endpoint,
+        jsonEncode(options),
+      ),
+    );
   }
 
   Future<void> use({String? ns, String? db}) async {
-    final value = NamespaceDatabase(ns: ns, db: db);
+    Map<String, String> value = {};
+
+    if (ns == null && db == null) {
+      throw Exception('Either "ns" or "db" must have value!');
+    } else if (ns != null && db != null) {
+      value = {'ns': ns, 'db': db};
+    } else if (ns != null) {
+      value = {'ns': ns};
+    } else if (db != null) {
+      value = {'db': db};
+    }
+
     await promiseToFuture(
       surreal.use(
-        value,
+        jsonEncode(value),
       ),
     );
   }
@@ -74,7 +78,8 @@ class Surreal {
     return dartify(result);
   }
 
-  Future<Object?> query(String sql, [Map<String, dynamic>? bindings]) async {
+  Future<Object?> query(String sql,
+      {Map<String, dynamic> bindings = const {}}) async {
     final result = await promiseToFuture(
       surreal.query(
         sql,
@@ -92,11 +97,4 @@ class Surreal {
     );
     return dartify(result);
   }
-}
-
-class NamespaceDatabase {
-  final String? ns;
-  final String? db;
-
-  NamespaceDatabase({this.ns, this.db});
 }
