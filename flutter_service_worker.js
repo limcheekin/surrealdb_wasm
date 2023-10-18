@@ -10,9 +10,9 @@ const RESOURCES = {"canvaskit/chromium/canvaskit.js": "96ae916cd2d1b7320fff853ee
 "canvaskit/skwasm.wasm": "1a074e8452fe5e0d02b112e22cdcf455",
 "canvaskit/skwasm.worker.js": "51253d3321b11ddb8d73fa8aa87d3b15",
 "canvaskit/skwasm.js": "95f16c6690f955a45b2317496983dbe9",
-"version.json": "ff966ab969ba381b900e61629bfb9789",
+"version.json": "10480ab669b41b140cc75519feb448ba",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index.js": "83f323e43143417ae30c45c23b43f232",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.js": "fca8f1552df41d2f0eac4edbb4b5e900",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.js": "6ebc0da1daecb4503c36e6365a58df34",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index_bg.wasm": "0d3b8c2f64ad2e90523966f8127baa19",
 "assets/AssetManifest.json": "4205dfd3fff25d921d7a6376029e7dc3",
 "assets/AssetManifest.bin": "743c053646fde33068b681d2c9bf9559",
@@ -24,12 +24,12 @@ const RESOURCES = {"canvaskit/chromium/canvaskit.js": "96ae916cd2d1b7320fff853ee
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "be37e703cfc657ee9b40656b087b4d57",
-"/": "be37e703cfc657ee9b40656b087b4d57",
-"main.dart.js": "45e9cec1164f016fcffa943a3999bc62",
+"index.html": "54068291d58d9a5b6018c6b223fa50ae",
+"/": "54068291d58d9a5b6018c6b223fa50ae",
+"main.dart.js": "9f95b129c64b6208d562435a3e44e512",
 "flutter.js": "6fef97aeca90b426343ba6c5c9dc5d4a",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"manifest.json": "0867c3e13649ac4d06fe34b7b3ddce08"};
+"manifest.json": "f5e7a2cbf54c9e9b1e9008d89b378047"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",

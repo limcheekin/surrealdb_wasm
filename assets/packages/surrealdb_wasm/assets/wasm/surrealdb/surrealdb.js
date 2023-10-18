@@ -16,7 +16,8 @@ class SurrealWrapper {
    * @returns {Promise<void>}
    */
   async connect(endpoint, opts) {
-    await this.db.connect(endpoint, opts);
+    const options = typeof opts == "string" ? JSON.parse(opts) : opts;
+    await this.db.connect(endpoint, options);
   }
 
   /**
@@ -25,7 +26,8 @@ class SurrealWrapper {
    */
   // await db.use({ ns: "test", db: "test" });
   async use(value) {
-    await this.db.use(value);
+    const nsdb = typeof value == "string" ? JSON.parse(value) : value;
+    await this.db.use(nsdb);
   }
 
   /**
