@@ -15,7 +15,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-      - run: flutter --version
+      - run: flutter doctor -v
 
       - name: Flutter Build 🏗️
         run: cd example;flutter build web --web-renderer html --release
