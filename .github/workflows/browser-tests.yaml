@@ -1,0 +1,29 @@
+name: Run Browser Tests
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout own repository
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter doctor -v
+
+      - name: Run chrome driver
+        run: |
+          git clone https://github.com/Bdaya-Dev/web_installers --branch new-chromedriver-urls
+          cd web_installers/packages/web_drivers
+          dart pub get
+          dart lib/web_driver_installer.dart chromedriver &
+
+      - name: Run browser tests
+        run: flutter drive --driver=test_driver/integration_test.dart --target integration_test/app_test.dart -d web-server --release --browser-name=chrome

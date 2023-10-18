@@ -18,18 +18,21 @@
 
     <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
-    <meta name="description" content="A new Flutter project." />
+    <meta
+      name="description"
+      content="Flutter SurrealDB WebAssembly(WASM) package"
+    />
 
     <!-- iOS meta tags & icons -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="example" />
+    <meta name="apple-mobile-web-app-title" content="documents" />
     <link rel="apple-touch-icon" href="icons/Icon-192.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png" />
 
-    <title>example</title>
+    <title>documents</title>
     <link rel="manifest" href="manifest.json" />
 
     <script>
@@ -40,11 +43,11 @@
     <script src="flutter.js" defer></script>
     <script
       type="module"
-      src="/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js"
+      src="/assets/wasm/surrealdb/surrealdb_wasm.js"
       defer
     ></script>
     <script type="module" defer>
-      import init from "/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js";
+      import init from "/assets/wasm/surrealdb/surrealdb_wasm.js";
 
       // Initialize the Wasm module
       await init();

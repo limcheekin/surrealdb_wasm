@@ -1,5 +1,9 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:js/js.dart';
 
+/// The SurrealWrapper class is for js-interop to it's JavaScript implementation
+/// at the assets/wasm/surrealdb/surrealdb.js.
 @JS('SurrealWrapper')
 class SurrealWrapper {
   external factory SurrealWrapper();
@@ -22,12 +26,13 @@ class SurrealWrapper {
   external Promise<void> health();
 }
 
-// import "lib.es5.d.dart";
+/// Dart bindings to JavaScript Promise class.
 @JS()
 @anonymous
 class Promise<T> {
-  external Promise<dynamic> then<TResult1, TResult2>(
-      dynamic Function(T value)? onfulfilled,
-      dynamic Function(dynamic reason)? onrejected);
   external factory Promise();
+  external Promise<dynamic> then<TResult1, TResult2>(
+    dynamic Function(T value)? onfulfilled,
+    dynamic Function(dynamic reason)? onrejected,
+  );
 }
