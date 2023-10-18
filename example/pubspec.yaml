@@ -1,0 +1,23 @@
+name: example
+description: Flutter SurrealDB WebAssembly(WASM) package example
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.1.3 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_console_widget: ^0.0.3
+  surrealdb_wasm:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
