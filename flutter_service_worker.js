@@ -3,8 +3,8 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"index.html": "614d9524deac5157ab69d7549604811d",
-"/": "614d9524deac5157ab69d7549604811d",
+const RESOURCES = {"index.html": "6619550c2444ec8423a2291741b1f93c",
+"/": "6619550c2444ec8423a2291741b1f93c",
 "version.json": "10480ab669b41b140cc75519feb448ba",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "assets/AssetManifest.bin": "54dce800720257bf6b628c19115b377a",
@@ -12,7 +12,7 @@ const RESOURCES = {"index.html": "614d9524deac5157ab69d7549604811d",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index.js": "83f323e43143417ae30c45c23b43f232",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.wasm.gz": "f748eaa1091e1a0d49734801d37fd3f8",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index_bg.wasm": "0d3b8c2f64ad2e90523966f8127baa19",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.js": "c5837f688567cc5fecbe69ae95e7dbea",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.js": "ef01d9eed489b0861439daed727fe29e",
 "assets/packages/surrealdb_wasm/assets/wasm/wasm-flate@0.1.12-alpha/dist/9eae6f5a6ee0cd2a3640.module.wasm": "3505b25e92704e3a104ad466197acf20",
 "assets/packages/surrealdb_wasm/assets/wasm/wasm-flate@0.1.12-alpha/dist/1.bootstrap.js": "c7b88bd6e01324351535d1f72e94f2f0",
 "assets/packages/surrealdb_wasm/assets/wasm/wasm-flate@0.1.12-alpha/dist/bootstrap.js": "e4e7516c40c29250b8241dd1ccf41fde",

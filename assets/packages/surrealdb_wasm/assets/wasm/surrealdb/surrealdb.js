@@ -1,5 +1,4 @@
 // REF: https://stackoverflow.com/questions/46338176/javascript-reading-local-file-to-uint8array-fast
-
 export async function loadWasm() {
   if (wasm !== undefined) return wasm;
 
