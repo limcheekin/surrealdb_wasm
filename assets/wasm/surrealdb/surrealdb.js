@@ -1,5 +1,5 @@
 // REF: https://stackoverflow.com/questions/46338176/javascript-reading-local-file-to-uint8array-fast
-export async function loadWasm() {
+async function loadWasm() {
   if (wasm !== undefined) return wasm;
 
   const input = new URL("surrealdb.wasm.gz", import.meta.url);
@@ -19,7 +19,7 @@ export async function loadWasm() {
   //const compressed_data = flate.gzip_encode_raw(data);
   //console.log("compressed_data", compressed_data);
   const decompressed_data = flate.gzip_decode_raw(data);
-  console.log("decompressed_data", decompressed_data);
+  //console.log("decompressed_data", decompressed_data);
   const bytes = decompressed_data.buffer;
 
   const { instance, module } = await WebAssembly.instantiate(bytes, imports);
@@ -27,6 +27,19 @@ export async function loadWasm() {
   return __wbg_finalize_init(instance, module);
 }
 
+// REF: https://stackoverflow.com/questions/45670597/wait-until-variable-equals
+const interval = setInterval(waitForFlate, 100);
+
+async function waitForFlate() {
+  if (flate != undefined) {
+    // We don't need to interval the waitForFlate function anymore,
+    // clearInterval will stop its periodical execution.
+    clearInterval(interval);
+
+    await loadWasm();
+    console.log("Surreal had been initialized!");
+  }
+}
 class SurrealWrapper {
   /**
    * Construct the database engine

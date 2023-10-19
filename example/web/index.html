@@ -40,23 +40,10 @@
       const serviceWorkerVersion = null;
     </script>
     <script src="/assets/packages/surrealdb_wasm/assets/wasm/wasm-flate@0.1.12-alpha/dist/bootstrap.js"></script>
-    <script src="/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js"></script>
-    <script type="module">
-      import { loadWasm } from "/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js";
-      // REF: https://stackoverflow.com/questions/45670597/wait-until-variable-equals
-      const interval = setInterval(waitForFlate, 100);
-
-      async function waitForFlate() {
-        if (flate != undefined) {
-          // We don't need to interval the waitForFlate function anymore,
-          // clearInterval will stop its periodical execution.
-          clearInterval(interval);
-
-          await loadWasm();
-          console.log("Surreal had been initialized!");
-        }
-      }
-    </script>
+    <script
+      type="module"
+      src="/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js"
+    ></script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
   </head>
