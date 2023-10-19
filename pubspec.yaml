@@ -21,4 +21,6 @@ dev_dependencies:
 
 flutter:
   assets:
+    #- assets/wasm/
     - assets/wasm/surrealdb/
+    - assets/wasm/wasm-flate@0.1.12-alpha/dist/

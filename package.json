@@ -8,7 +8,8 @@
     "compress": "gzip -c assets/wasm/surrealdb/surrealdb_wasm.min.js > assets/wasm/surrealdb/surrealdb_wasm.min.js.gz",
     "package": "npm run concat && npm run minify && npm run compress",
     "release": "npm run package && rm assets/wasm/surrealdb/*.js",
-    "dev": "npm run concat && flutter run"
+    "dev": "npm run concat && flutter run",
+    "wasm-flate-gzip": "node wasm-flate-gzip.js ./assets/wasm/surrealdb/index_bg.wasm ./assets/wasm/surrealdb/surrealdb.wasm.gz"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "homepage": "https://github.com/limcheekin/surrealdb_wasm#readme",
   "devDependencies": {
     "concat": "^1.0.3",
-    "terser": "^5.21.0"
+    "terser": "^5.21.0",
+    "wasm-flate": "^0.1.12-alpha"
   }
 }
