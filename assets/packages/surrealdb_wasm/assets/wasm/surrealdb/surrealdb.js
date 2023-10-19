@@ -1,3 +1,33 @@
+// REF: https://stackoverflow.com/questions/46338176/javascript-reading-local-file-to-uint8array-fast
+
+export async function loadWasm() {
+  if (wasm !== undefined) return wasm;
+
+  const input = new URL("surrealdb.wasm.gz", import.meta.url);
+  const imports = __wbg_get_imports();
+
+  const response = await fetch(input);
+
+  __wbg_init_memory(imports);
+
+  const data = new Uint8Array(await response.arrayBuffer());
+
+  // Decompress the data using wasm-flate
+  //const flate = await wasm_bindgen(
+  //  "https://unpkg.com/wasm-flate/wasm_flate_bg.wasm"
+  //);
+
+  //const compressed_data = flate.gzip_encode_raw(data);
+  //console.log("compressed_data", compressed_data);
+  const decompressed_data = flate.gzip_decode_raw(data);
+  console.log("decompressed_data", decompressed_data);
+  const bytes = decompressed_data.buffer;
+
+  const { instance, module } = await WebAssembly.instantiate(bytes, imports);
+
+  return __wbg_finalize_init(instance, module);
+}
+
 class SurrealWrapper {
   /**
    * Construct the database engine
