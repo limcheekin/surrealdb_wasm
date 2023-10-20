@@ -27,3 +27,12 @@ jobs:
 
       - name: Run browser tests
         run: flutter drive --driver=test_driver/integration_test.dart --target integration_test/app_test.dart -d web-server --release --browser-name=chrome
+
+      - name: Git Commit Integration Test Reports
+        if: github.event_name == 'push'
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github@users.noreply.github.com"
+          git add integration_test/reports
+          git commit -m "chore: added integration test reports"
+          git push
