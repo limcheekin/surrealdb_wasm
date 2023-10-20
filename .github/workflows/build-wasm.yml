@@ -27,21 +27,24 @@ jobs:
       - name: "Install surrealdb.wasm NPM dependencies"
         run: cd surrealdb.wasm;npm install
 
-      - name: "Build & Bundle"
+      - name: "Build"
         run: cd surrealdb.wasm;wasm-pack build --release --target web --out-name index --out-dir ../assets/wasm/surrealdb --no-default-features --features protocol-ws,protocol-http,kv-indxdb,kv-mem,rustls
 
       - name: "Install NPM dependencies"
         run: npm install
 
+      - name: "Minify and compress JavaScript files"
+        run: npm run package
+
       - name: "Compress wasm file"
         run: npm run wasm-flate-gzip
 
-      - name: Git commit compressed wasm file
+      - name: Git commit compressed surrealdb_wasm assets
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github@users.noreply.github.com"
-          git add assets/wasm/surrealdb/surrealdb.wasm.gz
+          git add -f assets/wasm/surrealdb
           if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "chore: updated surrealdb.wasm.gz"
+            git commit -m "chore: updated assets/wasm/surrealdb"
             git push
           fi
