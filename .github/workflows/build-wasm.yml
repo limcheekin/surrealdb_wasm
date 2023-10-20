@@ -1,0 +1,28 @@
+name: Build surrealdb.wasm
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout surrealdb.wasm repo (latest tag)"
+        run: |
+          git clone git@github.com:surrealdb/surrealdb.wasm.git
+          cd surrealdb.wasm;export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+          git checkout $LATEST_TAG
+
+      - name: "Install Node & NPM"
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: "Install wasm-pack"
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      - name: "Install NPM dependencies"
+        run: cd surrealdb.wasm;npm install
+
+      - name: "Build & Bundle"
+        run: cd surrealdb.wasm;wasm-pack build --release --target web --out-name index --out-dir compiled/full --no-default-features --features protocol-ws,protocol-http,kv-indxdb,kv-mem,rustls
