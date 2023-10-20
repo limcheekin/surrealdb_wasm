@@ -31,7 +31,7 @@ async function loadWasm() {
 const interval = setInterval(waitForFlate, 100);
 
 async function waitForFlate() {
-  if (flate != undefined) {
+  if (typeof flate !== "undefined") {
     // We don't need to interval the waitForFlate function anymore,
     // clearInterval will stop its periodical execution.
     clearInterval(interval);
