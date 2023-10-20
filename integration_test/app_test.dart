@@ -10,6 +10,7 @@ void main() {
   final db = Surreal();
 
   setUp(() async {
+    print('setUp()');
     await db.connect('indxdb://surreal');
     await db.use(ns: 'surreal', db: 'surreal');
   });
@@ -24,7 +25,7 @@ void main() {
     final resultList = results! as List<Map<String, dynamic>>;
     expect(
       resultList.first['databases'],
-      {'surreal': 'DEFINE DATABASE surreal'},
+      equals({'surreal': 'DEFINE DATABASE surreal'}),
     );
   });
 
@@ -54,7 +55,7 @@ void main() {
 
     final updated = await db.update('person', tom);
     final updatedTom = Map<String, dynamic>.from(updated! as Map);
-    expect(updatedTom['name'], tom['name']);
+    expect(updatedTom['name'], equals(tom['name']));
     expect(updatedTom['settings'], isNull);
   });
 
@@ -73,8 +74,8 @@ void main() {
     final merged = await db.merge('person:${tom['id']}', mergeData);
     final mergedTom = Map<String, dynamic>.from(merged! as Map);
     final settings = mergedTom['settings'] as Map<String, dynamic>;
-    expect(settings['active'], true);
-    expect(settings['marketing'], true);
+    expect(settings['active'], equals(true));
+    expect(settings['marketing'], equals(true));
   });
 
   testWidgets('Select a specific record and verify the selection',
@@ -88,7 +89,7 @@ void main() {
     final tom = Map<String, dynamic>.from(created! as Map);
     final result = await db.select('person:${tom['id']}');
     final selectedTom = Map<String, dynamic>.from(result! as Map);
-    expect(tom['name'], selectedTom['name']);
+    expect(tom['name'], equals(selectedTom['name']));
   });
 
   testWidgets('Execute a SurrealQL query and verify the result',
@@ -112,7 +113,7 @@ void main() {
     const sql = 'SELECT * FROM person';
     final result = await db.query(sql);
     final people = result! as List<Map<String, dynamic>>;
-    expect(people.length, 2);
+    expect(people.length, equals(2));
   });
 
   testWidgets('Delete a specific record and verify the deletion',

@@ -45,3 +45,6 @@ coverage
 # NodeJS related
 node_modules/
 assets/wasm/surrealdb/surrealdb_wasm.*
+
+# GitHub Actions cloned directory
+web_installers/

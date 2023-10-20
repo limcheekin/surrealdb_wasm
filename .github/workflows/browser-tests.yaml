@@ -26,7 +26,7 @@ jobs:
           dart lib/web_driver_installer.dart chromedriver &
 
       - name: Run browser tests
-        run: flutter drive --driver=test_driver/integration_test.dart --target integration_test/app_test.dart -d web-server --release --browser-name=chrome
+        run: flutter drive --driver=test_driver/integration_test.dart --target integration_test/app_test.dart -d web-server --release --browser-name=chrome --no-headless
 
       - name: Git Commit Integration Test Reports
         if: github.event_name == 'push'
