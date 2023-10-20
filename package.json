@@ -7,7 +7,6 @@
     "minify": "terser assets/wasm/surrealdb/surrealdb_wasm.js -c -m -o assets/wasm/surrealdb/surrealdb_wasm.min.js",
     "compress": "gzip -c assets/wasm/surrealdb/surrealdb_wasm.min.js > assets/wasm/surrealdb/surrealdb_wasm.min.js.gz",
     "package": "npm run concat && npm run minify && npm run compress",
-    "release": "npm run package && rm assets/wasm/surrealdb/*.js",
     "dev": "npm run concat && flutter run",
     "wasm-flate-gzip": "node wasm-flate-gzip.js ./assets/wasm/surrealdb/index_bg.wasm ./assets/wasm/surrealdb/surrealdb.wasm.gz"
   },
