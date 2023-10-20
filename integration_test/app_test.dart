@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:surrealdb_wasm/surrealdb_wasm.dart';
@@ -17,6 +19,7 @@ void main() {
   });
 
   testWidgets('Verify the current namespace', (WidgetTester tester) async {
+    print('db.query("INFO FOR NS")');
     final results = await db.query('INFO FOR NS');
     final resultList = results! as List<Map<String, dynamic>>;
     expect(
@@ -27,6 +30,7 @@ void main() {
 
   testWidgets('Create a record and verify its creation',
       (WidgetTester tester) async {
+    print("db.create('person', data)");
     final data = {
       'name': 'Tobie',
       'settings': {'active': true, 'marketing': true},
@@ -38,6 +42,7 @@ void main() {
 
   testWidgets('Update a record and verify the update',
       (WidgetTester tester) async {
+    print("db.update('person', data)");
     final data = {
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
@@ -55,6 +60,7 @@ void main() {
 
   testWidgets('Merge data into a record and verify the merge',
       (WidgetTester tester) async {
+    print("db.merge('person', data)");
     final data = {
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
@@ -73,6 +79,7 @@ void main() {
 
   testWidgets('Select a specific record and verify the selection',
       (WidgetTester tester) async {
+    print("db.select('person')");
     final data = {
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
@@ -86,6 +93,7 @@ void main() {
 
   testWidgets('Execute a SurrealQL query and verify the result',
       (WidgetTester tester) async {
+    print('db.query()');
     await db.delete('person'); // delete all
     await db.create(
       'person',
@@ -109,6 +117,7 @@ void main() {
 
   testWidgets('Delete a specific record and verify the deletion',
       (WidgetTester tester) async {
+    print('db.delete()');
     final data = {
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
@@ -118,5 +127,9 @@ void main() {
     await db.delete('person:${tom['id']}');
     final result = await db.select('person:${tom['id']}');
     expect(result, isNull);
+  });
+
+  testWidgets('Failed test example', (WidgetTester tester) async {
+    expect(2 + 2, equals(5));
   });
 }
