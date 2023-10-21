@@ -100,6 +100,13 @@ class _HomePageState extends State<HomePage> {
       'db.use()',
     );
 
+    await execute(
+      () {
+        return db.query('INFO FOR NS');
+      },
+      'db.query() ns',
+    );
+
     final created = await execute(
       () {
         return db.create(
@@ -115,6 +122,22 @@ class _HomePageState extends State<HomePage> {
         );
       },
       'db.create()',
+    );
+
+    await execute(
+      () {
+        return db.update(
+          created['id'],
+          {
+            'title': 'CTO',
+            'name': {
+              'first': 'Tom',
+              'last': 'John',
+            },
+          },
+        );
+      },
+      'db.update()',
     );
 
     await execute(
