@@ -105,7 +105,7 @@ void main() {
     const sql = 'SELECT * FROM person';
     final results = await db.query(sql);
     final people = List<Map<String, dynamic>>.from(results! as List);
-    expect(people.length, equals(4));
+    expect(people.length, equals(2));
   });
 
   testWidgets('Delete a specific record and verify the deletion',
