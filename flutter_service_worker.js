@@ -3,13 +3,13 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"index.html": "369640591a5b4e81ee55819dd252be05",
-"/": "369640591a5b4e81ee55819dd252be05",
+const RESOURCES = {"index.html": "94e4999ed73d4fa66e06a1e47fae6203",
+"/": "94e4999ed73d4fa66e06a1e47fae6203",
 "version.json": "10480ab669b41b140cc75519feb448ba",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "assets/AssetManifest.bin": "f5fa0aac19354f10e3090466b3c4b987",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js.gz": "2ecd8c709068c5b6e8939d33b55191f6",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js.gz": "dbad6b5dd1795e82add1fb6f90c03fb4",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index.js": "a9c949703d12e8f2f0d03b50d873eddb",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.wasm.gz": "5b732f36fad1b4720851b5e7a712c7c7",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index_bg.wasm": "faaf35f5c86149bb0f8584c39cfa719d",
@@ -37,7 +37,7 @@ const RESOURCES = {"index.html": "369640591a5b4e81ee55819dd252be05",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"main.dart.js": "9f95b129c64b6208d562435a3e44e512"};
+"main.dart.js": "177271f38b6f82f79ba0e3607c60a87a"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
