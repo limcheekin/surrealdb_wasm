@@ -104,7 +104,7 @@ void main() {
     );
     const sql = 'SELECT * FROM person';
     final results = await db.query(sql);
-    final people = List<Map<String, dynamic>>.from(results! as List);
+    final people = results! as List;
     expect(people.length, equals(2));
   });
 
