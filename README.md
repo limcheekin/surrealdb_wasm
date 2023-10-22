@@ -37,23 +37,23 @@ flutter pub get
 
 ## ✨ Features
 
-- [x] `connect()`
-- [x] `use()`
-- [x] `create()`
-- [x] `update()`
-- [x] `merge()`
-- [x] `delete()`
-- [x] `select()`
-- [x] `query()`
-- [ ] `set()`
-- [ ] `unset()`
-- [ ] `signup()`
-- [ ] `signin()`
-- [ ] `invalidate()`
-- [ ] `authenticate()`
-- [ ] `patch()`
-- [ ] `version()`
-- [ ] `health()`
+- <input type="checkbox" checked disabled /> `connect()`
+- <input type="checkbox" checked disabled /> `use()`
+- <input type="checkbox" checked disabled /> `create()`
+- <input type="checkbox" checked disabled /> `update()`
+- <input type="checkbox" checked disabled /> `merge()`
+- <input type="checkbox" checked disabled /> `delete()`
+- <input type="checkbox" checked disabled /> `select()`
+- <input type="checkbox" checked disabled /> `query()`
+- <input type="checkbox" disabled /> `set()`
+- <input type="checkbox" disabled /> `unset()`
+- <input type="checkbox" disabled /> `signup()`
+- <input type="checkbox" disabled /> `signin()`
+- <input type="checkbox" disabled /> `invalidate()`
+- <input type="checkbox" disabled /> `authenticate()`
+- <input type="checkbox" disabled /> `patch()`
+- <input type="checkbox" disabled /> `version()`
+- <input type="checkbox" disabled /> `health()`
 
 ## 🏃 Examples
 
@@ -104,7 +104,7 @@ This project is licensed under the terms of the MIT license.
 
 ## 🗒️ Citation
 
-If you utilize this repository, please consider citing it with:
+If you utilize this package, please consider citing it with:
 
 ```
 @misc{surrealdb_wasm,
