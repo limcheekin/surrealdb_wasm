@@ -1,0 +1,51 @@
+name: publish
+on:
+  push:
+    tags: # trigger the publish job on tag creation
+      - "*"
+jobs:
+  build:
+    uses: ./.github/workflows/build-wasm-js.yaml
+
+  test:
+    needs: build
+    uses: ./.github/workflows/browser-tests.yaml
+
+  publish_github_release:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ncipollo/release-action@v1
+        with:
+          bodyFile: "RELEASE.md"
+
+  publish_pub_dev:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Append GITHUB_RUN_NUMBER to version
+        run: |
+          VERSION=$(grep 'version:' pubspec.yaml | cut -d ' ' -f 2)
+          echo "Current version: $VERSION"
+          NEW_VERSION="$VERSION+${GITHUB_RUN_NUMBER}"
+          echo "New version: $NEW_VERSION"
+          sed -i "s/version: $VERSION/version: $NEW_VERSION/g" pubspec.yaml
+          cat pubspec.yaml
+
+      - name: Dry run publish package
+        run: dart pub publish --dry-run # Perform a dry run first
+
+      #- name: Publish package
+      #  run: |
+      #    dart pub publish --force --token ${{ secrets.PUB_TOKEN }}
+
+  deploy:
+    needs: publish_pub_dev
+    uses: ./.github/workflows/deploy.yaml

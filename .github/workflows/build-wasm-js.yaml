@@ -1,6 +1,7 @@
 name: Build surrealdb.wasm and js files
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   build:
