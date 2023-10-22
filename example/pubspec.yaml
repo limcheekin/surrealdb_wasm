@@ -12,7 +12,6 @@ dependencies:
 
   flutter_console_widget: ^0.0.3
   surrealdb_wasm:
-    path: ../
 
 dev_dependencies:
   flutter_test:
