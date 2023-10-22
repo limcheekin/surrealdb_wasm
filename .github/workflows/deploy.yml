@@ -1,8 +1,6 @@
 name: Deploy to GitHub Pages
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -18,7 +16,7 @@ jobs:
       - run: flutter doctor -v
 
       - name: Flutter Build 🏗️
-        run: cd example;flutter build web --web-renderer html --release
+        run: cd example;flutter build web --release
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.3
