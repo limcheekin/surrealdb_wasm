@@ -18,6 +18,12 @@ jobs:
           channel: stable
       - run: flutter doctor -v
 
+      - name: Check formatting
+        run: dart format --line-length 80 --set-exit-if-changed lib integration_test
+
+      - name: Analyze code
+        run: flutter analyze lib integration_test
+
       - name: Run chrome driver
         run: |
           git clone https://github.com/Bdaya-Dev/web_installers --branch new-chromedriver-urls
