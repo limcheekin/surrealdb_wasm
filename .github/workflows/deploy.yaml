@@ -17,7 +17,7 @@ jobs:
       - run: flutter doctor -v
 
       - name: Flutter Build 🏗️
-        run: cd example;flutter build web --release
+        run: cd example;flutter build web --release --base-href https://limcheekin.github.io/surrealdb_wasm/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.3
