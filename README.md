@@ -37,23 +37,23 @@ flutter pub get
 
 ## ✨ Features
 
-- <input type="checkbox" checked disabled /> `connect()`
-- <input type="checkbox" checked disabled /> `use()`
-- <input type="checkbox" checked disabled /> `create()`
-- <input type="checkbox" checked disabled /> `update()`
-- <input type="checkbox" checked disabled /> `merge()`
-- <input type="checkbox" checked disabled /> `delete()`
-- <input type="checkbox" checked disabled /> `select()`
-- <input type="checkbox" checked disabled /> `query()`
-- <input type="checkbox" disabled /> `set()`
-- <input type="checkbox" disabled /> `unset()`
-- <input type="checkbox" disabled /> `signup()`
-- <input type="checkbox" disabled /> `signin()`
-- <input type="checkbox" disabled /> `invalidate()`
-- <input type="checkbox" disabled /> `authenticate()`
-- <input type="checkbox" disabled /> `patch()`
-- <input type="checkbox" disabled /> `version()`
-- <input type="checkbox" disabled /> `health()`
+- <input type="checkbox" checked disabled /> [x] `connect()`
+- <input type="checkbox" checked disabled /> [x] `use()`
+- <input type="checkbox" checked disabled /> [x] `create()`
+- <input type="checkbox" checked disabled /> [x] `update()`
+- <input type="checkbox" checked disabled /> [x] `merge()`
+- <input type="checkbox" checked disabled /> [x] `delete()`
+- <input type="checkbox" checked disabled /> [x] `select()`
+- <input type="checkbox" checked disabled /> [x] `query()`
+- <input type="checkbox" disabled /> [ ] `set()`
+- <input type="checkbox" disabled /> [ ] `unset()`
+- <input type="checkbox" disabled /> [ ] `signup()`
+- <input type="checkbox" disabled /> [ ] `signin()`
+- <input type="checkbox" disabled /> [ ] `invalidate()`
+- <input type="checkbox" disabled /> [ ] `authenticate()`
+- <input type="checkbox" disabled /> [ ] `patch()`
+- <input type="checkbox" disabled /> [ ] `version()`
+- <input type="checkbox" disabled /> [ ] `health()`
 
 ## 🏃 Examples
 
