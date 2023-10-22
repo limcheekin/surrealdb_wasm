@@ -4,15 +4,11 @@ on:
     tags: # trigger the publish job on tag creation
       - "*"
 jobs:
-  build:
-    uses: ./.github/workflows/build-wasm-js.yaml
-
   test:
-    needs: build
     uses: ./.github/workflows/browser-tests.yaml
 
   publish_github_release:
-    needs: [build, test]
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -23,7 +19,7 @@ jobs:
           bodyFile: "RELEASE.md"
 
   publish_pub_dev:
-    needs: [build, test]
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

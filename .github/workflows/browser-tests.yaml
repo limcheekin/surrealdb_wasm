@@ -36,7 +36,7 @@ jobs:
         run: ./ci-integration-test.sh
 
       - name: Git Commit Integration Test Reports
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github@users.noreply.github.com"
