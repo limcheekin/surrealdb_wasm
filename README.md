@@ -2,7 +2,6 @@
 
 [![pub package](https://img.shields.io/pub/v/surrealdb_wasm.svg?label=surrealdb_wasm&color=blue)](https://pub.dartlang.org/packages/surrealdb_wasm)
 [![browser tests](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml/badge.svg)](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml)
-[![ci](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/main.yaml)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
