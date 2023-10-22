@@ -35,7 +35,7 @@ Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. We 
 1. Clone the repository: `git clone https://github.com/limcheekin/surrealdb_wasm.git`
 2. Install dependencies: `flutter pub get`
 3. Set up your development environments:
-   - [Download and install Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to build `surrealdb_wasm.js` with the `npm run package` command after making changes to [surrealdb.js](https://github.com/limcheekin/surrealdb_wasm/blob/main/assets/wasm/surrealdb/surrealdb.js)).
+   - [Download and install Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to build `surrealdb_wasm.js` with the `npm run package` command after making changes to [surrealdb.js](https://github.com/limcheekin/surrealdb_wasm/blob/main/assets/wasm/surrealdb/surrealdb.js).
    - Download [Chrome Driver](https://chromedriver.chromium.org/downloads) for integration test execution.
 
 ### Contributor Guidelines
