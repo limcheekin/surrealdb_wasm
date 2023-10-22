@@ -1,4 +1,4 @@
-name: Run Browser Tests
+name: browser tests
 
 on:
   push:
