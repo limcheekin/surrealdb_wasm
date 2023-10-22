@@ -1,9 +1,9 @@
 # surrealdb_wasm
 
 [![pub package](https://img.shields.io/pub/v/surrealdb_wasm.svg?label=surrealdb_wasm&color=blue)](https://pub.dartlang.org/packages/surrealdb_wasm)
+[![browser tests](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml/badge.svg)](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml)
+[![ci](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/main.yaml)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![ci](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/AyushChothe/surrealdb_wasm/actions/workflows/main.yaml)
-[![integration tests](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml/badge.svg)](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml)
 [![License: MIT][license_badge]][license_link]
 
 The Flutter SurrealDB WebAssembly (WASM) package is a powerful integration for Flutter, built upon the foundation of [surrealdb.wasm](https://github.com/surrealdb/surrealdb.wasm), the official SurrealDB library for WebAssembly.
