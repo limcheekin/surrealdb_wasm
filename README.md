@@ -1,67 +1,119 @@
-# Surrealdb Wasm
+# surrealdb_wasm
 
+[![pub package](https://img.shields.io/pub/v/surrealdb_wasm.svg?label=surrealdb_wasm&color=blue)](https://pub.dartlang.org/packages/surrealdb_wasm)
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
+[![ci](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/AyushChothe/surrealdb_wasm/actions/workflows/main.yaml)
+[![integration tests](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml/badge.svg)](https://github.com/limcheekin/surrealdb_wasm/actions/workflows/browser-tests.yaml)
 [![License: MIT][license_badge]][license_link]
 
-Flutter SurrealDB WebAssembly(WASM) package
+The Flutter SurrealDB WebAssembly (WASM) package is a powerful integration for Flutter, built upon the foundation of [surrealdb.wasm](https://github.com/surrealdb/surrealdb.wasm), the official SurrealDB library for WebAssembly.
 
-## Installation 💻
+## 🔍 Demo
 
-**❗ In order to start using Surrealdb Wasm you must have the [Flutter SDK][flutter_install_link] installed on your machine.**
+Try out surreal_wasm/example in your browser:
+https://limcheekin.github.io/surrealdb_wasm/
+
+## 💻 Installation
+
+**❗ In order to start using surrealdb_wasm you must have the [Flutter SDK][flutter_install_link] installed on your machine.**
 
 Install via `flutter pub add`:
 
 ```sh
-dart pub add surrealdb_wasm
+flutter pub add surrealdb_wasm
 ```
 
----
+Alternatively, add `surrealdb_wasm` to your `pubspec.yaml`:
 
-## Continuous Integration 🤖
+```yaml
+dependencies:
+  surrealdb_wasm:
+```
 
-Surrealdb Wasm comes with a built-in [GitHub Actions workflow][github_actions_link] powered by [Very Good Workflows][very_good_workflows_link] but you can also add your preferred CI/CD solution.
-
-Out of the box, on each pull request and push, the CI `formats`, `lints`, and `tests` the code. This ensures the code remains consistent and behaves correctly as you add functionality or make changes. The project uses [Very Good Analysis][very_good_analysis_link] for a strict set of analysis options used by our team. Code coverage is enforced using the [Very Good Workflows][very_good_coverage_link].
-
----
-
-## Running Tests 🧪
-
-For first time users, install the [very_good_cli][very_good_cli_link]:
+Install it:
 
 ```sh
-dart pub global activate very_good_cli
+flutter pub get
 ```
 
-To run all unit tests:
+## ✨ Features
 
-```sh
-very_good test --coverage
+- [x] `connect()`
+- [x] `use()`
+- [x] `create()`
+- [x] `update()`
+- [x] `merge()`
+- [x] `delete()`
+- [x] `select()`
+- [x] `query()`
+- [ ] `set()`
+- [ ] `unset()`
+- [ ] `signup()`
+- [ ] `signin()`
+- [ ] `invalidate()`
+- [ ] `authenticate()`
+- [ ] `patch()`
+- [ ] `version()`
+- [ ] `health()`
+
+## 🏃 Examples
+
+```dart
+final db = Surreal();
+
+await db.connect('indxdb://surreal');
+await db.use(ns: 'test', db: 'test');
+
+final created = db.create('person',
+          {
+            'title': 'CTO',
+            'name': {
+              'first': 'Tom',
+              'last': 'Jerry',
+            },
+            'marketing': true,
+          },
+        );
+
+// created['id']: person:b9eht8bie8abf0vbcfxh
+final merged = await db.merge(
+        created['id'],
+        {
+          'marketing': false,
+        },
+      );
+
+final tom = await db.select(created['id']);
+
+final deleted = await db.delete(created['id']);
 ```
 
-To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
+For more code examples, kindly refer to the [integration test](https://github.com/limcheekin/surrealdb_wasm/blob/main/integration_test/surrealdb_wasm_test.dart) and the [example project](https://github.com/limcheekin/surrealdb_wasm/blob/main/example/lib/main.dart).
 
-```sh
-# Generate Coverage Report
-genhtml coverage/lcov.info -o coverage/
+## 🧑‍💼 Contributing
 
-# Open Coverage Report
-open coverage/index.html
+Contributions are welcome! Please check out the unimplemented features above, issues on the repository, and feel free to open a pull request.
+For more information, please see the [contribution guide](CONTRIBUTING.md).
+
+<a href="https://github.com/limcheekin/surrealdb_wasm/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=limcheekin/surrealdb_wasm" />
+</a>
+
+## 📔 License
+
+This project is licensed under the terms of the MIT license.
+
+## 🗒️ Citation
+
+If you utilize this repository, please consider citing it with:
+
 ```
-
-[flutter_install_link]: https://docs.flutter.dev/get-started/install
-[github_actions_link]: https://docs.github.com/en/actions/learn-github-actions
-[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[license_link]: https://opensource.org/licenses/MIT
-[logo_black]: https://raw.githubusercontent.com/VGVentures/very_good_brand/main/styles/README/vgv_logo_black.png#gh-light-mode-only
-[logo_white]: https://raw.githubusercontent.com/VGVentures/very_good_brand/main/styles/README/vgv_logo_white.png#gh-dark-mode-only
-[mason_link]: https://github.com/felangel/mason
-[very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
-[very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
-[very_good_cli_link]: https://pub.dev/packages/very_good_cli
-[very_good_coverage_link]: https://github.com/marketplace/actions/very-good-coverage
-[very_good_ventures_link]: https://verygood.ventures
-[very_good_ventures_link_light]: https://verygood.ventures#gh-light-mode-only
-[very_good_ventures_link_dark]: https://verygood.ventures#gh-dark-mode-only
-[very_good_workflows_link]: https://github.com/VeryGoodOpenSource/very_good_workflows
+@misc{surrealdb_wasm,
+  author = {Lim Chee Kin},
+  title = {surrealdb_wasm: Flutter SurrealDB WebAssembly(WASM) package},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/limcheekin/surrealdb_wasm}},
+}
+```
