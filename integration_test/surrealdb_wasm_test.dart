@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:surrealdb_wasm/surrealdb_wasm.dart';
@@ -35,6 +37,40 @@ void main() {
     final result = await db.create('person', data);
     final tobie = Map<String, dynamic>.from(result! as Map);
     expect(tobie['id'], isNotNull);
+  });
+
+  testWidgets('Create a record with datetime field and change it',
+      (WidgetTester tester) async {
+    const sql = '''
+DEFINE TABLE document SCHEMALESS;
+DEFINE FIELD content ON document TYPE option<string>;
+DEFINE FIELD created ON document TYPE datetime;
+''';
+    await db.query(sql);
+    const created = '2023-10-31T03:19:16.601Z';
+    final data = {
+      'content': 'doc 1',
+      'created': created,
+    };
+    final result =
+        await db.query('CREATE ONLY document CONTENT ${jsonEncode(data)}');
+    final doc = Map<String, dynamic>.from(
+      (result! as List).first as Map,
+    );
+    expect(doc['id'], isNotNull);
+    expect(doc['created'], equals(created));
+
+    const mergedDate = '2023-11-01T03:19:16.601Z';
+    final mergeData = {
+      'created': mergedDate,
+    };
+    final merged = await db.query(
+      'UPDATE ONLY ${doc['id']} MERGE ${jsonEncode(mergeData)}',
+    );
+    final mergedDoc = Map<String, dynamic>.from(
+      (merged! as List).first as Map,
+    );
+    expect(mergedDoc['created'], equals(mergedDate));
   });
 
   testWidgets('Update a record and verify the update',
