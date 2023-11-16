@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:js/js_util.dart';
 import 'package:surrealdb_wasm/src/js.dart';
@@ -294,7 +295,7 @@ class Surreal {
   /// final people = await db.query('SELECT * FROM person');
   ///
   /// // Run a query with bindings
-  /// final people = await db.query('SELECT * FROM type::table($table)',
+  /// final people = await db.query(r'SELECT * FROM type::table($table)',
   ///                               bindings: { table: 'person' });
   /// ```
   Future<Object?> query(
@@ -332,5 +333,93 @@ class Surreal {
       ),
     );
     return dartify(result);
+  }
+
+  Future<Object?> transaction(
+    void Function(Transaction txn) action,
+  ) async {
+    // Create a new transaction object
+    final txn = Transaction(this);
+    // Call the action function with the transaction object
+    action(txn);
+    // Execute the transaction
+    return txn._execute();
+  }
+}
+
+class Transaction {
+  Transaction(this._db) {
+    id = _generateId();
+    _isCancel = false;
+  }
+
+  static const beginTransaction = 'BEGIN TRANSACTION;';
+  static const commitTransaction = 'COMMIT TRANSACTION;';
+  late String id;
+  late bool _isCancel;
+  final Surreal _db;
+  final _buffer = StringBuffer(beginTransaction);
+
+  String _generateId() {
+    // Get the current timestamp
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
+
+    // Generate a random number
+    final random = Random().nextInt(999999).toString().padLeft(6, '0');
+
+    // Combine timestamp and random number to create a unique ID
+    final id = '$timestamp$random';
+
+    return id;
+  }
+
+  void cancel() {
+    _isCancel = true;
+  }
+
+  Future<Object?> _execute() async {
+    if (!_isCancel) {
+      _buffer.write(commitTransaction);
+      return _db.query(_buffer.toString());
+    } else {
+      return Future.value('Transaction:$id has been cancelled by user');
+    }
+  }
+
+  /// Executes SurrealQL queries on the database in a transaction.
+  ///
+  /// The [sql] parameter is the SurrealQL query string,
+  /// and the optional [bindings] parameter allows you
+  /// to pass parameters as a Map.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// // Run a query without bindings
+  /// db.query('CREATE account:one SET balance = 135605.16');
+  ///
+  /// // Run a query with bindings
+  /// db.query(r'UPDATE account:one SET balance += $amount',
+  ///                    bindings: { amount: 300.00 });
+  /// ```
+  void query(
+    String sql, {
+    Map<String, dynamic> bindings = const {},
+  }) {
+    if (bindings.isNotEmpty) {
+      final regex = RegExp(r'\$(\w+)');
+      final matches = regex.allMatches(sql);
+      var bSql = sql;
+      for (final match in matches) {
+        final key = match.group(1);
+        if (bindings[key] is Map || bindings[key] is Iterable) {
+          bSql = bSql.replaceAll('\$$key', jsonEncode(bindings[key]));
+        } else {
+          bSql = bSql.replaceAll('\$$key', bindings[key].toString());
+        }
+      }
+      _buffer.write(bSql);
+    } else {
+      _buffer.write(sql);
+    }
   }
 }

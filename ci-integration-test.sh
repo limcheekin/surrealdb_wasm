@@ -1,1 +1,1 @@
-flutter drive --driver=test_driver/integration_test.dart --target integration_test/surrealdb_wasm_test.dart -d web-server --release --browser-name=chrome && cat integration_test/reports/integration_response_data.json
+flutter drive --driver=test_driver/integration_test.dart --target integration_test/all_tests.dart -d web-server --release --browser-name=chrome
