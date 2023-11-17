@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout own repository
         uses: actions/checkout@v4
@@ -25,12 +25,12 @@ jobs:
       - name: Analyze code
         run: flutter analyze lib integration_test
 
+      - name: Setup chrome driver
+        uses: nanasess/setup-chromedriver@v2
+
       - name: Run chrome driver
         run: |
-          git clone https://github.com/Bdaya-Dev/web_installers --branch new-chromedriver-urls
-          cd web_installers/packages/web_drivers
-          dart pub get
-          dart lib/web_driver_installer.dart chromedriver &
+          chromedriver --port=4444 &
 
       - name: Run browser tests
         run: ./ci-integration-test.sh
