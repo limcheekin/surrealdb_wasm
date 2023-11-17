@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:js/js_util.dart';
 import 'package:surrealdb_wasm/src/js.dart';
 
@@ -335,37 +337,88 @@ class Surreal {
     return dartify(result);
   }
 
+  /// Executes a transaction by calling the provided [action] function
+  /// with a [Transaction] object, allowing the execution of various database
+  /// operations within the transaction.
+  ///
+  /// Optionally, a [timeout] duration can be specified to limit the execution
+  /// time of the transaction. If the transaction takes longer than the
+  /// specified duration, a timeout exception is throw.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// await db.transaction(
+  ///   (Transaction txn) async {
+  ///     // Perform database operations using txn
+  ///     txn.query('CREATE account:one SET balance = 135605.16;');
+  ///     txn.query(r'UPDATE account:one SET balance += $amount',
+  ///                    bindings: { amount: 300.00 });
+  ///   },
+  ///   timeout: const Duration(seconds: 60), // Custom timeout of 60 seconds
+  /// );
+  /// ```
+  ///
+  /// If the transaction is successfully executed within the specified timeout,
+  /// the method returns the result of the transaction.
+  ///
+  /// Throws a [TimeoutException] if the transaction exceeds the specified
+  /// [timeout].
+  /// Throws an exception if any error occurs during the transaction execution.
+  ///
+  /// ```
   Future<Object?> transaction(
-    void Function(Transaction txn) action,
-  ) async {
+    Future<void> Function(Transaction txn) action, {
+    Duration timeout = const Duration(seconds: 5),
+  }) async {
     // Create a new transaction object
     final txn = Transaction(this);
+
     // Call the action function with the transaction object
-    action(txn);
+    await action(txn).timeout(timeout);
+
     // Execute the transaction
     return txn._execute();
   }
 }
 
+/// A class representing a database transaction
 class Transaction {
+  /// Creates a new [Transaction] instance with unique id.
   Transaction(this._db) {
     id = _generateId();
-    _isCancel = false;
   }
 
-  static const beginTransaction = 'BEGIN TRANSACTION;';
-  static const commitTransaction = 'COMMIT TRANSACTION;';
-  late String id;
-  late bool _isCancel;
-  final Surreal _db;
-  final _buffer = StringBuffer(beginTransaction);
+  /// The statement to begin a database transaction.
+  static const _beginTransaction = 'BEGIN TRANSACTION;';
 
+  /// The statement to commit a database transaction.
+  static const _commitTransaction = 'COMMIT TRANSACTION;';
+
+  /// Indicates whether the transaction has been canceled by the user.
+  @visibleForTesting
+  bool isCancel = false;
+
+  /// A buffer to store the SQL statements for the transaction.
+  @visibleForTesting
+  final buffer = StringBuffer(_beginTransaction);
+
+  /// A random number generator for generating transaction Id.
+  static final _random = Random();
+
+  /// The Surreal instance associated with this transaction.
+  final Surreal _db;
+
+  /// The unique identifier for this transaction.
+  late String id;
+
+  /// Generates a unique identifier for the transaction based on
+  /// the current timestamp and a random number.
   String _generateId() {
     // Get the current timestamp
     final timestamp = DateTime.now().millisecondsSinceEpoch;
 
     // Generate a random number
-    final random = Random().nextInt(999999).toString().padLeft(6, '0');
+    final random = _random.nextInt(999999).toString().padLeft(6, '0');
 
     // Combine timestamp and random number to create a unique ID
     final id = '$timestamp$random';
@@ -373,20 +426,25 @@ class Transaction {
     return id;
   }
 
+  /// Cancels the transaction, preventing it from being executed.
   void cancel() {
-    _isCancel = true;
+    isCancel = true;
   }
 
+  /// Executes the transaction and returns the result.
+  ///
+  /// If the transaction is canceled,
+  /// a message indicating cancellation is returned.
   Future<Object?> _execute() async {
-    if (!_isCancel) {
-      _buffer.write(commitTransaction);
-      return _db.query(_buffer.toString());
+    if (!isCancel) {
+      buffer.write(_commitTransaction);
+      return _db.query(buffer.toString());
     } else {
-      return Future.value('Transaction:$id has been cancelled by user');
+      return 'Transaction has been canceled by user.';
     }
   }
 
-  /// Executes SurrealQL queries on the database in a transaction.
+  /// Executes SurrealQL statements on the database in a transaction.
   ///
   /// The [sql] parameter is the SurrealQL query string,
   /// and the optional [bindings] parameter allows you
@@ -408,18 +466,22 @@ class Transaction {
     if (bindings.isNotEmpty) {
       final regex = RegExp(r'\$(\w+)');
       final matches = regex.allMatches(sql);
-      var bSql = sql;
+      final params = <String, String>{};
       for (final match in matches) {
-        final key = match.group(1);
-        if (bindings[key] is Map || bindings[key] is Iterable) {
-          bSql = bSql.replaceAll('\$$key', jsonEncode(bindings[key]));
-        } else {
-          bSql = bSql.replaceAll('\$$key', bindings[key].toString());
-        }
+        final key = match.group(1)!;
+        params[key] = bindings[key] is Map || bindings[key] is Iterable
+            ? jsonEncode(bindings[key])
+            : bindings[key] is String
+                ? '"${bindings[key]}"'
+                : bindings[key].toString();
       }
-      _buffer.write(bSql);
+      final parameterizedSql = sql.replaceAllMapped(
+        regex,
+        (match) => params[match.group(1)]!,
+      );
+      buffer.write(parameterizedSql);
     } else {
-      _buffer.write(sql);
+      buffer.write(sql);
     }
   }
 }
