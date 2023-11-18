@@ -34,14 +34,3 @@ jobs:
 
       - name: Run browser tests
         run: ./ci-integration-test.sh
-
-      - name: Git Commit Integration Test Reports
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github@users.noreply.github.com"
-          git add integration_test/reports
-          if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "chore: added integration test reports"
-            git push
-          fi
