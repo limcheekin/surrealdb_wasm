@@ -8,7 +8,7 @@
     "compress": "gzip -c assets/wasm/surrealdb/surrealdb_wasm.min.js > assets/wasm/surrealdb/surrealdb_wasm.min.js.gz",
     "package": "npm run concat && npm run minify && npm run compress",
     "dev": "npm run concat && flutter run",
-    "wasm-flate-gzip": "node wasm-flate-gzip.js ./assets/wasm/surrealdb/index_bg.wasm ./assets/wasm/surrealdb/surrealdb.wasm.gz"
+    "compress-wasm": "gzip -c -9 assets/wasm/surrealdb/index_bg.wasm > assets/wasm/surrealdb/surrealdb.wasm.gz"
   },
   "repository": {
     "type": "git",
