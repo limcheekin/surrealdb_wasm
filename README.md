@@ -45,6 +45,7 @@ flutter pub get
 - <input type="checkbox" checked disabled /> [x] `delete()`
 - <input type="checkbox" checked disabled /> [x] `select()`
 - <input type="checkbox" checked disabled /> [x] `query()`
+- <input type="checkbox" checked disabled /> [x] `transaction()`
 - <input type="checkbox" disabled /> [ ] `set()`
 - <input type="checkbox" disabled /> [ ] `unset()`
 - <input type="checkbox" disabled /> [ ] `signup()`
