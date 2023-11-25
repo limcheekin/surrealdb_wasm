@@ -156,78 +156,78 @@ DEFINE FIELD created ON document TYPE datetime;
     await db.delete(id);
     final result = await db.select(id);
     expect(result, isNull);
-    // Integration tests for set method
-    testWidgets('set method test', (WidgetTester tester) async {
-      await db.set('testKey', 'testValue');
-      final result = await db.query('SELECT testKey FROM <table>');
-      expect(result, equals('testValue'));
-    });
+  });
+  // Integration tests for set method
+  testWidgets('set method test', (WidgetTester tester) async {
+    await db.set('testKey', 'testValue');
+    final result = await db.query('SELECT testKey FROM <table>');
+    expect(result, equals('testValue'));
+  });
 
-    // Integration tests for unset method
-    testWidgets('unset method test', (WidgetTester tester) async {
-      await db.set('testKey', 'testValue');
-      await db.unset('testKey');
-      final result = await db.query('SELECT testKey FROM <table>');
-      expect(result, isNull);
-    });
+  // Integration tests for unset method
+  testWidgets('unset method test', (WidgetTester tester) async {
+    await db.set('testKey', 'testValue');
+    await db.unset('testKey');
+    final result = await db.query('SELECT testKey FROM <table>');
+    expect(result, isNull);
+  });
 
-    // Integration tests for signup method
-    testWidgets('signup method test', (WidgetTester tester) async {
-      final credentials = {'user': 'testUser', 'pass': 'testPass'};
-      final result = await db.signup(credentials);
-      expect(result, contains('token'));
-    });
+  // Integration tests for signup method
+  testWidgets('signup method test', (WidgetTester tester) async {
+    final credentials = {'user': 'testUser', 'pass': 'testPass'};
+    final result = await db.signup(credentials);
+    expect(result, contains('token'));
+  });
 
-    // Integration tests for signin method
-    testWidgets('signin method test', (WidgetTester tester) async {
-      final credentials = {'user': 'testUser', 'pass': 'testPass'};
-      await db.signup(credentials);
-      final result = (await db.signin(credentials))! as String;
-      expect(result, contains('token'));
-    });
+  // Integration tests for signin method
+  testWidgets('signin method test', (WidgetTester tester) async {
+    final credentials = {'user': 'testUser', 'pass': 'testPass'};
+    await db.signup(credentials);
+    final result = (await db.signin(credentials))! as String;
+    expect(result, contains('token'));
+  });
 
-    // Integration tests for invalidate method
-    testWidgets('invalidate method test', (WidgetTester tester) async {
-      final credentials = {'user': 'testUser', 'pass': 'testPass'};
-      await db.signup(credentials);
-      final token = (await db.signin(credentials))! as String;
-      await db.authenticate(token);
-      await db.invalidate();
-      final result = await db.query('INFO FOR USER');
-      expect(result, isNull);
-    });
+  // Integration tests for invalidate method
+  testWidgets('invalidate method test', (WidgetTester tester) async {
+    final credentials = {'user': 'testUser', 'pass': 'testPass'};
+    await db.signup(credentials);
+    final token = (await db.signin(credentials))! as String;
+    await db.authenticate(token);
+    await db.invalidate();
+    final result = await db.query('INFO FOR USER');
+    expect(result, isNull);
+  });
 
-    // Integration tests for authenticate method
-    testWidgets('authenticate method test', (WidgetTester tester) async {
-      final credentials = {'user': 'testUser', 'pass': 'testPass'};
-      await db.signup(credentials);
-      final token = (await db.signin(credentials))! as String;
-      await db.authenticate(token);
-      final result = await db.query('INFO FOR USER');
-      expect(result, isNotNull);
-    });
+  // Integration tests for authenticate method
+  testWidgets('authenticate method test', (WidgetTester tester) async {
+    final credentials = {'user': 'testUser', 'pass': 'testPass'};
+    await db.signup(credentials);
+    final token = (await db.signin(credentials))! as String;
+    await db.authenticate(token);
+    final result = await db.query('INFO FOR USER');
+    expect(result, isNotNull);
+  });
 
-    // Integration tests for patch method
-    testWidgets('patch method test', (WidgetTester tester) async {
-      await db.create('<table>', {'key': 'value'});
-      await db.patch('<table>', [
-        {'op': 'replace', 'path': '/key', 'value': 'newValue'}
-      ]);
-      final result = await db.query('SELECT key FROM <table>');
-      expect(result, equals('newValue'));
-    });
+  // Integration tests for patch method
+  testWidgets('patch method test', (WidgetTester tester) async {
+    await db.create('<table>', {'key': 'value'});
+    await db.patch('<table>', [
+      {'op': 'replace', 'path': '/key', 'value': 'newValue'},
+    ]);
+    final result = await db.query('SELECT key FROM <table>');
+    expect(result, equals('newValue'));
+  });
 
-    // Integration tests for version method
-    testWidgets('version method test', (WidgetTester tester) async {
-      final result = await db.version();
-      expect(result, isNotNull);
-    });
+  // Integration tests for version method
+  testWidgets('version method test', (WidgetTester tester) async {
+    final result = await db.version();
+    expect(result, isNotNull);
+  });
 
-    // Integration tests for health method
-    testWidgets('health method test', (WidgetTester tester) async {
-      await db.health();
-      // Assuming health check passes if no exception is thrown
-      expect(true, isTrue);
-    });
+  // Integration tests for health method
+  testWidgets('health method test', (WidgetTester tester) async {
+    await db.health();
+    // Assuming health check passes if no exception is thrown
+    expect(true, isTrue);
   });
 }
