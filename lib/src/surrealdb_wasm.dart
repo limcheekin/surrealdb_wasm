@@ -14,6 +14,86 @@ import 'package:surrealdb_wasm/src/js.dart';
 class Surreal {
   final _surreal = SurrealWrapper();
 
+  /// Assigns a value as a parameter for this connection.
+  ///
+  /// The [key] is the parameter name, and [value] is the value to be assigned.
+  Future<void> set(String key, dynamic value) async {
+    await promiseToFuture<void>(
+      _surreal.set(key, jsonEncode(value)),
+    );
+  }
+
+  /// Removes a parameter from this connection.
+  ///
+  /// The [key] is the parameter name to be removed.
+  Future<void> unset(String key) async {
+    await promiseToFuture<void>(
+      _surreal.unset(key),
+    );
+  }
+
+  /// Signs up a user to a specific authentication scope.
+  ///
+  /// The [credentials] is a map containing the user's sign-up information.
+  Future<Object?> signup(Map<String, dynamic> credentials) async {
+    final result = await promiseToFuture<Object?>(
+      _surreal.signup(jsonEncode(credentials)),
+    );
+    return dartify(result);
+  }
+
+  /// Signs in a user to a specific authentication scope.
+  ///
+  /// The [credentials] is a map containing the user's sign-in information.
+  Future<Object?> signin(Map<String, dynamic> credentials) async {
+    final result = await promiseToFuture<Object?>(
+      _surreal.signin(jsonEncode(credentials)),
+    );
+    return dartify(result);
+  }
+
+  /// Invalidates the authentication for the current connection.
+  Future<void> invalidate() async {
+    await promiseToFuture<void>(
+      _surreal.invalidate(),
+    );
+  }
+
+  /// Authenticates the current connection with a JWT token.
+  ///
+  /// The [token] is the JWT token used for authentication.
+  Future<void> authenticate(String token) async {
+    await promiseToFuture<void>(
+      _surreal.authenticate(token),
+    );
+  }
+
+  /// Applies JSON Patch changes to a resource.
+  ///
+  /// The [resource] is the name of the resource to patch,
+  /// and [data] is the JSON Patch data.
+  Future<Object?> patch(String resource, List<Map<String, dynamic>> data) async {
+    final result = await promiseToFuture<Object?>(
+      _surreal.patch(resource, jsonEncode(data)),
+    );
+    return dartify(result);
+  }
+
+  /// Returns the version of the server.
+  Future<String> version() async {
+    final result = await promiseToFuture<String>(
+      _surreal.version(),
+    );
+    return result;
+  }
+
+  /// Checks whether the server is healthy.
+  Future<void> health() async {
+    await promiseToFuture<void>(
+      _surreal.health(),
+    );
+  }
+
   /// Connect to a database engine.
   ///
   /// The [endpoint] is the URL of the Surreal server to connect to.
