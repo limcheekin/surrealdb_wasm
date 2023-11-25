@@ -51,3 +51,6 @@ surrealdb.wasm
 
 # Local Integration Test
 chromedriver
+
+# Python related
+venv/
