@@ -182,7 +182,7 @@ DEFINE FIELD created ON document TYPE datetime;
   testWidgets('signin method test', (WidgetTester tester) async {
     final credentials = {'user': 'testUser', 'pass': 'testPass'};
     await db.signup(credentials);
-    final result = await db.signin(credentials);
+    final result = await db.signin(credentials) as String;
     expect(result, contains('token'));
   });
 
