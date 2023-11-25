@@ -22,6 +22,42 @@ import * as fflate from "https://cdn.skypack.dev/fflate@0.8.0?min";
 })();
 
 class SurrealWrapper {
+
+  async set(key, value) {
+    await this.db.set(key, value);
+  }
+
+  async unset(key) {
+    await this.db.unset(key);
+  }
+
+  async signup(credentials) {
+    return await this.db.signup(credentials);
+  }
+
+  async signin(credentials) {
+    return await this.db.signin(credentials);
+  }
+
+  async invalidate() {
+    await this.db.invalidate();
+  }
+
+  async authenticate(token) {
+    await this.db.authenticate(token);
+  }
+
+  async patch(resource, data) {
+    return await this.db.patch(resource, data);
+  }
+
+  async version() {
+    return await this.db.version();
+  }
+
+  async health() {
+    await this.db.health();
+  }
   /**
    * Construct the database engine
    *
