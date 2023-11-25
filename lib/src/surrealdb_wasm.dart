@@ -46,10 +46,10 @@ class Surreal {
   ///
   /// The [credentials] is a map containing the user's sign-in information.
   Future<Object?> signin(Map<String, dynamic> credentials) async {
-    final result = await promiseToFuture<Object?>(
+    final result = await promiseToFuture<String>(
       _surreal.signin(jsonEncode(credentials)),
     );
-    return dartify(result);
+    return dartify(result)!;
   }
 
   /// Invalidates the authentication for the current connection.
