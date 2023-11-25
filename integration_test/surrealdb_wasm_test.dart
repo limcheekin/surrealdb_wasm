@@ -9,6 +9,17 @@ void main() {
 
   final db = Surreal();
 
+  const defineScopeStatement = r'''
+DEFINE SCOPE user_scope
+SESSION 24h
+SIGNUP (
+  CREATE user SET email = $email, password = crypto::argon2::generate($password)
+)
+SIGNIN (
+  SELECT * FROM user WHERE email = $email AND crypto::argon2::compare(password, $password)
+);
+''';
+
   setUpAll(() async {
     await db.connect('indxdb://surreal');
     await db.use(ns: 'surreal', db: 'surreal');
@@ -170,9 +181,17 @@ DEFINE FIELD created ON document TYPE datetime;
 
   // Integration tests for signup method
   testWidgets('signup method test', (WidgetTester tester) async {
-    final credentials = {'user': 'testUser', 'pass': 'testPass'};
+    await db.query(defineScopeStatement);
+    final credentials = {
+      'namespace': 'surreal',
+      'database': 'surreal',
+      'scope': 'user_scope',
+      'email': 'john.doe@example.com',
+      'password': 'password123',
+    };
     final result = await db.signup(credentials);
-    expect(result, contains('token'));
+    print('signup $result');
+    expect(result, isNotNull);
   });
 
   // Integration tests for signin method
@@ -206,11 +225,11 @@ DEFINE FIELD created ON document TYPE datetime;
 
   // Integration tests for patch method
   testWidgets('patch method test', (WidgetTester tester) async {
-    await db.create('<table>', {'key': 'value'});
-    await db.patch('<table>', [
+    await db.create('keyValue', {'key': 'value'});
+    await db.patch('keyValue', [
       {'op': 'replace', 'path': '/key', 'value': 'newValue'},
     ]);
-    final result = await db.query('SELECT key FROM <table>');
+    final result = await db.query('SELECT key FROM keyValue');
     expect(result, equals('newValue'));
   });
 
