@@ -54,3 +54,4 @@ chromedriver
 
 # Python related
 venv/
+.aider*
