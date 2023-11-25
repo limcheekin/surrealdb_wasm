@@ -72,7 +72,10 @@ class Surreal {
   ///
   /// The [resource] is the name of the resource to patch,
   /// and [data] is the JSON Patch data.
-  Future<Object?> patch(String resource, List<Map<String, dynamic>> data) async {
+  Future<Object?> patch(
+    String resource,
+    List<Map<String, dynamic>> data,
+  ) async {
     final result = await promiseToFuture<Object?>(
       _surreal.patch(resource, jsonEncode(data)),
     );
