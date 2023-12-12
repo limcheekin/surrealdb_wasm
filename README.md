@@ -103,6 +103,9 @@ final result = await db.transaction((txn) async {
       r'CREATE test SET name = $name;',
       bindings: {'name': 'John'},
     );
+    if (somethingWrong) {
+      txn.cancel();
+    }
 });
 ```
 
