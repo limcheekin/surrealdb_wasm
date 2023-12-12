@@ -9,8 +9,10 @@ The Flutter SurrealDB WebAssembly (WASM) package is a powerful integration for F
 
 ## 🔍 Demo
 
-Try out surreal_wasm/example in your browser:
-https://limcheekin.github.io/surrealdb_wasm/
+Try out surreal_wasm applications in your browser:
+
+- [Example App](https://limcheekin.github.io/surrealdb_wasm/)
+- [SurrealDB Console](https://www.fluwix.com/surrealdb_console)
 
 ## 💻 Installation
 
