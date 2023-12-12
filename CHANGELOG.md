@@ -11,7 +11,7 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
-## [0.7.0+2] - 2023-12-12
+## [0.7.0+3] - 2023-12-12
 
 - Added transaction support.
 - Implemented `set()`, `unset()`, `signup()`, `signin()`, `patch()`, `version()` and `health()`.
