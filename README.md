@@ -46,17 +46,19 @@ flutter pub get
 - <input type="checkbox" checked disabled /> [x] `select()`
 - <input type="checkbox" checked disabled /> [x] `query()`
 - <input type="checkbox" checked disabled /> [x] `transaction()`
-- <input type="checkbox" disabled /> [ ] `set()`
-- <input type="checkbox" disabled /> [ ] `unset()`
-- <input type="checkbox" disabled /> [ ] `signup()`
-- <input type="checkbox" disabled /> [ ] `signin()`
+- <input type="checkbox" checked disabled /> [x] `set()`
+- <input type="checkbox" checked disabled /> [x] `unset()`
+- <input type="checkbox" checked disabled /> [x] `signup()`
+- <input type="checkbox" checked disabled /> [x] `signin()`
 - <input type="checkbox" disabled /> [ ] `invalidate()`
 - <input type="checkbox" disabled /> [ ] `authenticate()`
-- <input type="checkbox" disabled /> [ ] `patch()`
-- <input type="checkbox" disabled /> [ ] `version()`
-- <input type="checkbox" disabled /> [ ] `health()`
+- <input type="checkbox" checked disabled /> [x] `patch()`
+- <input type="checkbox" checked disabled /> [x] `version()`
+- <input type="checkbox" checked disabled /> [x] `health()`
 
 ## 🏃 Examples
+
+### Basic
 
 ```dart
 final db = Surreal();
@@ -89,6 +91,22 @@ final deleted = await db.delete(created['id']);
 ```
 
 For more code examples, kindly refer to the [integration test](https://github.com/limcheekin/surrealdb_wasm/blob/main/integration_test/surrealdb_wasm_test.dart) and the [example project](https://github.com/limcheekin/surrealdb_wasm/blob/main/example/lib/main.dart).
+
+### Transaction Support
+
+```dart
+final result = await db.transaction((txn) async {
+    txn.query('DEFINE TABLE test SCHEMAFULL;');
+    txn.query('DEFINE FIELD id ON test TYPE record;');
+    txn.query('DEFINE FIELD name ON test TYPE string;');
+    txn.query(
+      r'CREATE test SET name = $name;',
+      bindings: {'name': 'John'},
+    );
+});
+```
+
+For more code examples, kindly refer to the [integration test of transaction](https://github.com/limcheekin/surrealdb_wasm/blob/main/integration_test/transaction_test.dart).
 
 ## 🧑‍💼 Contributing
 

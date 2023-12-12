@@ -22,9 +22,8 @@ import * as fflate from "https://cdn.skypack.dev/fflate@0.8.0?min";
 })();
 
 class SurrealWrapper {
-
   async set(key, value) {
-    await this.db.set(key, value);
+    await this.db.set(key, JSON.parse(value));
   }
 
   async unset(key) {
@@ -32,11 +31,11 @@ class SurrealWrapper {
   }
 
   async signup(credentials) {
-    return await this.db.signup(credentials);
+    return await this.db.signup(JSON.parse(credentials));
   }
 
   async signin(credentials) {
-    return await this.db.signin(credentials);
+    return await this.db.signin(JSON.parse(credentials));
   }
 
   async invalidate() {
@@ -48,7 +47,7 @@ class SurrealWrapper {
   }
 
   async patch(resource, data) {
-    return await this.db.patch(resource, data);
+    return await this.db.patch(resource, JSON.parse(data));
   }
 
   async version() {
