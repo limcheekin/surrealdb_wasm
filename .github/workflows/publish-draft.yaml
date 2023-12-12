@@ -35,6 +35,7 @@ jobs:
 
       - name: Publish package
         run: |
+          mkdir -p ~/.config/dart
           echo ${{ secrets.CREDENTIAL_JSON }} > ~/.config/dart/pub-credentials.json
           flutter pub publish --dry-run
 
