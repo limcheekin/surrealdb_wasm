@@ -1,0 +1,3 @@
+- Added transaction support.
+- Implemented `set()`, `unset()`, `signup()`, `signin()`, `patch()`, `version()` and `health()`.
+- Migrated from `wasm-flate` to `fflate` package.
