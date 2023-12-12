@@ -74,12 +74,15 @@ void main() {
 
     testWidgets('Transaction cancellation prevents execution',
         (WidgetTester tester) async {
+      const somethingWrong = true;
       final transactionResult = await db.transaction((txn) async {
         txn.query(
           r'CREATE test SET name = $name;',
           bindings: {'name': 'John'},
         );
-        txn.cancel();
+        if (somethingWrong) {
+          txn.cancel();
+        }
       });
       expect(
         transactionResult,
