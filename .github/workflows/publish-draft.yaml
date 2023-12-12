@@ -1,4 +1,4 @@
-name: publish
+name: publish-draft
 on:
   push:
     tags: # trigger the publish job on tag creation
@@ -23,24 +23,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Dart
-        uses: dart-lang/setup-dart@v1
 
       - name: Append GITHUB_RUN_NUMBER to version
+        run: ./update_version.sh
+
+      - name: Publish package
+        uses: sakebook/actions-flutter-pub-publisher@v1.4.1
+        with:
+          credential: ${{ secrets.CREDENTIAL_JSON }}
+          flutter_package: true
+          skip_test: true
+          dry_run: true
+
+      - name: Git commit the updated pubspec.yaml
         run: |
-          VERSION=$(grep 'version:' pubspec.yaml | cut -d ' ' -f 2)
-          echo "Current version: $VERSION"
-          NEW_VERSION="$VERSION+${GITHUB_RUN_NUMBER}"
-          echo "New version: $NEW_VERSION"
-          sed -i "s/version: $VERSION/version: $NEW_VERSION/g" pubspec.yaml
-          cat pubspec.yaml
-
-      - name: Dry run publish package
-        run: dart pub publish --dry-run # Perform a dry run first
-
-      #- name: Publish package
-      #  run: |
-      #    dart pub publish --force --token ${{ secrets.PUB_TOKEN }}
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github@users.noreply.github.com"
+          git add pubspec.yaml
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "chore: updated the version of pubspec.yaml"
+            git push
+          fi
 
   deploy:
     needs: publish_pub_dev
