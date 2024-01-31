@@ -31,8 +31,7 @@ SIGNIN (
 
   testWidgets('Verify the current namespace', (WidgetTester tester) async {
     final results = await db.query('INFO FOR NS');
-    final resultList = results! as List;
-    final result = Map<String, dynamic>.from(resultList.first! as Map);
+    final result = Map<String, dynamic>.from(results! as Map);
     expect(
       result['databases'],
       isEmpty, // nothing had been created
@@ -66,7 +65,7 @@ DEFINE FIELD created ON document TYPE datetime;
     final result =
         await db.query('CREATE ONLY document CONTENT ${jsonEncode(data)}');
     final doc = Map<String, dynamic>.from(
-      (result! as List).first as Map,
+      result! as Map,
     );
     expect(doc['id'], isNotNull);
     expect(doc['created'], equals(created));
@@ -79,7 +78,7 @@ DEFINE FIELD created ON document TYPE datetime;
       'UPDATE ONLY ${doc['id']} MERGE ${jsonEncode(mergeData)}',
     );
     final mergedDoc = Map<String, dynamic>.from(
-      (merged! as List).first as Map,
+      merged! as Map,
     );
     expect(mergedDoc['created'], equals(mergedDate));
   });
