@@ -12,9 +12,9 @@ jobs:
 
       - name: "Checkout surrealdb.wasm repo (latest tag)"
         run: |
-          git clone https://github.com/surrealdb/surrealdb.wasm.git
-          cd surrealdb.wasm;export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-          git checkout $LATEST_TAG
+          git clone https://github.com/limcheekin/surrealdb.wasm.git
+          # cd surrealdb.wasm;export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+          # git checkout $LATEST_TAG
 
       - name: "Install Node & NPM"
         uses: actions/setup-node@v4
@@ -38,7 +38,7 @@ jobs:
         run: npm run package
 
       - name: "Compress wasm file"
-        run: npm run wasm-flate-gzip
+        run: npm run compress-wasm
 
       - name: Git commit compressed surrealdb_wasm assets
         run: |
