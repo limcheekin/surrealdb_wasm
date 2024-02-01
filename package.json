@@ -1,6 +1,6 @@
 {
   "name": "surrealdb_wasm",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "surrealdb_wasm javascript files minifier and gz packager.",
   "scripts": {
     "concat": "concat -o assets/wasm/surrealdb/surrealdb_wasm.js assets/wasm/surrealdb/index.js assets/wasm/surrealdb/surrealdb.js",
@@ -28,7 +28,6 @@
   "homepage": "https://github.com/limcheekin/surrealdb_wasm#readme",
   "devDependencies": {
     "concat": "^1.0.3",
-    "terser": "^5.24.0",
-    "wasm-flate": "^0.1.12-alpha"
+    "terser": "^5.24.0"
   }
 }
