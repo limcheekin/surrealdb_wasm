@@ -33,10 +33,11 @@ jobs:
       - name: Update GITHUB_RUN_NUMBER to version
         run: ./update_version.sh
 
+      - name: Prepare pub credentials
+        run: mkdir -p $XDG_CONFIG_HOME/dart && echo '${{ secrets.CREDENTIAL_JSON }}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
+
       - name: Publish package
         run: |
-          mkdir -p ~/.config/dart
-          echo ${{ secrets.CREDENTIAL_JSON }} > ~/.config/dart/pub-credentials.json
           flutter pub publish --dry-run
           flutter pub publish --force
 

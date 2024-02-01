@@ -11,6 +11,10 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [0.7.0+4] - 2024-02-01
+
+- Updated unofficial surrealdb.wasm released for surrealdb v1.1.1.
+
 ## [0.7.0+3] - 2023-12-12
 
 - Added transaction support.

@@ -1,3 +1,1 @@
-- Added transaction support.
-- Implemented `set()`, `unset()`, `signup()`, `signin()`, `patch()`, `version()` and `health()`.
-- Migrated from `wasm-flate` to `fflate` package.
+- Updated unofficial surrealdb.wasm released for surrealdb v1.1.1.
