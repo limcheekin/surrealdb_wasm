@@ -41,16 +41,6 @@ jobs:
           flutter pub publish --dry-run
           flutter pub publish --force
 
-      - name: Git commit the updated pubspec.yaml
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github@users.noreply.github.com"
-          git add pubspec.yaml
-          if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "chore: updated the version of pubspec.yaml"
-            git push
-          fi
-
   deploy:
     needs: publish_pub_dev
     uses: ./.github/workflows/deploy.yaml
