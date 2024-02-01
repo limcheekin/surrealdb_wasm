@@ -22,6 +22,16 @@ SIGNIN (
 
   setUpAll(() async {
     await db.connect('indxdb://surreal');
+    /* Tests run on 01 Feb 2024 with 8 errors/failures? 
+    Local SurrealDB v1.1.1 started with the following command:
+    surreal start --log trace --user root --pass root
+    await db.connect(
+      'ws://localhost:8000',
+      options: {
+        'user': {'username': 'root', 'password': 'root'},
+      },
+    );
+    */
     await db.use(ns: 'surreal', db: 'surreal');
   });
 
