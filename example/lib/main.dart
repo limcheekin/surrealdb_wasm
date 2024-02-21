@@ -150,6 +150,16 @@ class _HomePageState extends State<HomePage> {
       'db.merge()',
     );
 
+    await execute(
+      () => db.patch(
+        created['id'],
+        [
+          {'op': 'replace', 'path': '/status', 'value': 'completed'},
+        ],
+      ),
+      'db.patch()',
+    );
+
     // batch inserts
     await execute(
       () {

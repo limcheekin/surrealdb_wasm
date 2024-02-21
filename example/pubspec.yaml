@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
 
   flutter_console_widget: ^0.0.3
-  surrealdb_wasm:
+  surrealdb_wasm: ^0.7.0+4
 
 dev_dependencies:
   flutter_test:
