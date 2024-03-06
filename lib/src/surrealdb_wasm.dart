@@ -204,7 +204,8 @@ class Surreal {
   /// The optional [namespace] parameter,
   /// and the optional [database] parameter.
   ///
-  /// If neither [namespace] nor [database] is provided, it will throw an exception.
+  /// If neither [namespace] nor [database] is provided,
+  /// it will throw an exception.
   ///
   /// Example usage:
   /// ```dart
