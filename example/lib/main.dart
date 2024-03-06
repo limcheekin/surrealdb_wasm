@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     await execute(
-      () => db.use(ns: 'surreal', db: 'surreal'),
+      () => db.use(namespace: 'surreal', database: 'surreal'),
       'db.use()',
     );
 
@@ -108,8 +108,8 @@ class _HomePageState extends State<HomePage> {
     );
 
     final created = await execute(
-      () {
-        return db.create(
+      () async {
+        final results = await db.create(
           'person',
           {
             'title': 'CTO',
@@ -119,7 +119,8 @@ class _HomePageState extends State<HomePage> {
             },
             'marketing': true,
           },
-        );
+        ) as List;
+        return results.first;
       },
       'db.create()',
     );

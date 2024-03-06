@@ -11,12 +11,12 @@ dependencies:
     sdk: flutter
 
   flutter_console_widget: ^0.0.3
-  surrealdb_wasm: ^0.7.0+4
+  surrealdb_wasm:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
