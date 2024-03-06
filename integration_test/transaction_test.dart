@@ -13,7 +13,7 @@ void main() {
 
   setUpAll(() async {
     await db.connect('mem://');
-    await db.use(ns: 'surreal', db: 'surreal');
+    await db.use(namespace: 'surreal', database: 'surreal');
   });
   group('db.transaction()', () {
     testWidgets('should throw error message: Connection uninitialised',
@@ -63,7 +63,7 @@ void main() {
         );
       });
 
-      final result = await db.query('SELECT * FROM test;');
+      final result = ((await db.query('SELECT * FROM test;'))! as List).first;
       expect(result, isNotEmpty);
       final test = Map<String, dynamic>.from(
         (result! as List).first as Map,
@@ -88,7 +88,7 @@ void main() {
         transactionResult,
         equals('Transaction has been canceled by user.'),
       );
-      final result = await db.query('SELECT * FROM test;');
+      final result = ((await db.query('SELECT * FROM test;'))! as List).first;
       expect(result, isEmpty);
     });
 
@@ -111,7 +111,7 @@ void main() {
         txn.query('');
       });
 
-      expect(result, isNull);
+      expect(result, isEmpty);
     });
 
     test('Concurrent Transactions: Multiple transactions execute concurrently',
@@ -157,7 +157,7 @@ void main() {
           );
         });
 
-        final result = await db.query('SELECT * FROM test2');
+        final result = ((await db.query('SELECT * FROM test2'))! as List).first;
         // Ensure the data was inserted correctly in the nested transaction
         expect(result, isNotEmpty);
         final test = Map<String, dynamic>.from(

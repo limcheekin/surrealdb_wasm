@@ -201,33 +201,33 @@ class Surreal {
 
   /// Switch to a specific namespace or database.
   ///
-  /// The optional [ns] parameter is the namespace,
-  /// and the optional [db] parameter is the database.
+  /// The optional [namespace] parameter,
+  /// and the optional [database] parameter.
   ///
-  /// If neither [ns] nor [db] is provided, it will throw an exception.
+  /// If neither [namespace] nor [database] is provided, it will throw an exception.
   ///
   /// Example usage:
   /// ```dart
   /// // Switch to a namespace
-  /// await db.use(ns: 'namespace');
+  /// await db.use(namespace: 'namespace');
   ///
   /// // Switch to a database
-  /// await db.use(db: 'database');
+  /// await db.use(database: 'database');
   ///
   /// // Switch both
-  /// await db.use(ns: 'namespace', db: 'database');
+  /// await db.use(namespace: 'namespace', database: 'database');
   /// ```
-  Future<void> use({String? ns, String? db}) async {
+  Future<void> use({String? namespace, String? database}) async {
     var value = <String, String>{};
 
-    if (ns == null && db == null) {
-      throw Exception('Either "ns" or "db" must have value!');
-    } else if (ns != null && db != null) {
-      value = {'ns': ns, 'db': db};
-    } else if (ns != null) {
-      value = {'ns': ns};
-    } else if (db != null) {
-      value = {'db': db};
+    if (namespace == null && database == null) {
+      throw Exception('Either "namespace" or "database" must have value!');
+    } else if (namespace != null && database != null) {
+      value = {'namespace': namespace, 'database': database};
+    } else if (namespace != null) {
+      value = {'namespace': namespace};
+    } else if (database != null) {
+      value = {'database': database};
     }
 
     await promiseToFuture<void>(
