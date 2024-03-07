@@ -1,1 +1,4 @@
-- Updated unofficial surrealdb.wasm released for surrealdb v1.1.1.
+- Upgraded to official surrealdb.wasm 0.8.0 released for surrealdb 1.2.0.
+- API breaking changes: 
+  - Previous: `db.use(ns: 'test', db: 'test');`
+  - Current: `db.use(namespace: 'test', database: 'test');` 

@@ -66,7 +66,7 @@ flutter pub get
 final db = Surreal();
 
 await db.connect('indxdb://surreal');
-await db.use(ns: 'test', db: 'test');
+await db.use(namespace: 'test', database: 'test');
 
 final created = db.create('person',
           {

@@ -1,6 +1,6 @@
 name: surrealdb_wasm
 description: Flutter SurrealDB WebAssembly(WASM) package
-version: 0.7.0+3
+version: 0.8.0
 repository: https://github.com/limcheekin/surrealdb_wasm
 
 environment:
@@ -10,14 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  js: ^0.7.0
+  js: ^0.7.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   integration_test:
     sdk: flutter
-  mocktail: ^1.0.0
   very_good_analysis: ^5.1.0
 
 flutter:
