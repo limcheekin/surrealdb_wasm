@@ -63,7 +63,7 @@ void main() {
         );
       });
 
-      final result = ((await db.query('SELECT * FROM test;'))! as List).first;
+      final result = await db.query('SELECT * FROM test;');
       expect(result, isNotEmpty);
       final test = Map<String, dynamic>.from(
         (result! as List).first as Map,
@@ -88,7 +88,7 @@ void main() {
         transactionResult,
         equals('Transaction has been canceled by user.'),
       );
-      final result = ((await db.query('SELECT * FROM test;'))! as List).first;
+      final result = await db.query('SELECT * FROM test;');
       expect(result, isEmpty);
     });
 
@@ -157,7 +157,7 @@ void main() {
           );
         });
 
-        final result = ((await db.query('SELECT * FROM test2'))! as List).first;
+        final result = await db.query('SELECT * FROM test2');
         // Ensure the data was inserted correctly in the nested transaction
         expect(result, isNotEmpty);
         final test = Map<String, dynamic>.from(

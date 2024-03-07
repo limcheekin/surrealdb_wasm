@@ -264,7 +264,7 @@ class Surreal {
         data is Map || data is Iterable ? jsonEncode(data) : data,
       ),
     );
-    return dartify(result);
+    return (dartify(result)! as List).first;
   }
 
   /// Updates a specific resource(record)
@@ -309,7 +309,7 @@ class Surreal {
         data is Map || data is Iterable ? jsonEncode(data) : data,
       ),
     );
-    return dartify(result);
+    return (dartify(result)! as List).first;
   }
 
   /// Merges data into an existing resource(record) or resources(records).
@@ -341,7 +341,7 @@ class Surreal {
         data is Map || data is Iterable ? jsonEncode(data) : data,
       ),
     );
-    return dartify(result);
+    return (dartify(result)! as List).first;
   }
 
   /// Selects and retrieves all resources(records)
@@ -366,7 +366,7 @@ class Surreal {
         resource,
       ),
     );
-    return dartify(result);
+    return dartify(result)! as List;
   }
 
   /// Executes a SurrealQL query on the database.
@@ -394,7 +394,8 @@ class Surreal {
         jsonEncode(bindings),
       ),
     );
-    return dartify(result);
+    final list = dartify(result)! as List;
+    return list.isNotEmpty ? list.first : list;
   }
 
   /// Deletes a specific resource(record) or all resources(records).

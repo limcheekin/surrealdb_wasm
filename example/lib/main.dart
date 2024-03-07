@@ -108,8 +108,8 @@ class _HomePageState extends State<HomePage> {
     );
 
     final created = await execute(
-      () async {
-        final results = await db.create(
+      () {
+        return db.create(
           'person',
           {
             'title': 'CTO',
@@ -119,8 +119,7 @@ class _HomePageState extends State<HomePage> {
             },
             'marketing': true,
           },
-        ) as List;
-        return results.first;
+        );
       },
       'db.create()',
     );

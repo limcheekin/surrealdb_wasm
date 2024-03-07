@@ -40,8 +40,8 @@ SIGNIN (
   });
 
   testWidgets('Verify the current namespace', (WidgetTester tester) async {
-    final results = (await db.query('INFO FOR NS'))! as List;
-    final result = Map<String, dynamic>.from(results.first as Map);
+    final results = await db.query('INFO FOR NS');
+    final result = Map<String, dynamic>.from(results! as Map);
     expect(
       result['databases'],
       isEmpty, // nothing had been created
@@ -54,8 +54,8 @@ SIGNIN (
       'name': 'Tobie',
       'settings': {'active': true, 'marketing': true},
     };
-    final results = (await db.create('person', data))! as List;
-    final tobie = Map<String, dynamic>.from(results.first as Map);
+    final result = await db.create('person', data);
+    final tobie = Map<String, dynamic>.from(result! as Map);
     expect(tobie['id'], isNotNull);
   });
 
@@ -72,10 +72,10 @@ DEFINE FIELD created ON document TYPE datetime;
       'content': 'doc 1',
       'created': created,
     };
-    final results = (await db
-        .query('CREATE ONLY document CONTENT ${jsonEncode(data)}'))! as List;
+    final result =
+        await db.query('CREATE ONLY document CONTENT ${jsonEncode(data)}');
     final doc = Map<String, dynamic>.from(
-      results.first as Map,
+      result! as Map,
     );
     expect(doc['id'], isNotNull);
     expect(doc['created'], equals(created));
@@ -84,11 +84,11 @@ DEFINE FIELD created ON document TYPE datetime;
     final mergeData = {
       'created': mergedDate,
     };
-    final merged = (await db.query(
+    final merged = await db.query(
       'UPDATE ONLY ${doc['id']} MERGE ${jsonEncode(mergeData)}',
-    ))! as List;
+    );
     final mergedDoc = Map<String, dynamic>.from(
-      merged.first as Map,
+      merged! as Map,
     );
     expect(mergedDoc['created'], equals(mergedDate));
   });
@@ -99,13 +99,12 @@ DEFINE FIELD created ON document TYPE datetime;
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
     };
-    final created = ((await db.create('person', data))! as List).first;
+    final created = await db.create('person', data);
     final tom = Map<String, dynamic>.from(created! as Map);
     tom['name'] = 'Tom John';
     tom.remove('settings');
 
-    final updated =
-        ((await db.update(tom.remove('id') as String, tom))! as List).first;
+    final updated = await db.update(tom.remove('id') as String, tom);
     final updatedTom = Map<String, dynamic>.from(updated! as Map);
     expect(updatedTom['name'], equals(tom['name']));
     expect(updatedTom['settings'], isNull);
@@ -117,13 +116,12 @@ DEFINE FIELD created ON document TYPE datetime;
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
     };
-    final created = ((await db.create('person', data))! as List).first;
+    final created = await db.create('person', data);
     final tom = Map<String, dynamic>.from(created! as Map);
     final mergeData = {
       'settings': {'marketing': true},
     };
-    final merged =
-        ((await db.merge(tom['id'] as String, mergeData))! as List).first;
+    final merged = await db.merge(tom['id'] as String, mergeData);
     final mergedTom = Map<String, dynamic>.from(merged! as Map);
     final settings = Map<String, dynamic>.from(mergedTom['settings'] as Map);
     expect(settings['active'], equals(true));
@@ -136,10 +134,10 @@ DEFINE FIELD created ON document TYPE datetime;
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
     };
-    final created = ((await db.create('person', data))! as List).first;
+    final created = await db.create('person', data);
     final tom = Map<String, dynamic>.from(created! as Map);
-    final result = ((await db.select(tom['id'] as String))! as List).first;
-    final selectedTom = Map<String, dynamic>.from(result! as Map);
+    final results = (await db.select(tom['id'] as String))! as List;
+    final selectedTom = Map<String, dynamic>.from(results.first as Map);
     expect(tom['name'], equals(selectedTom['name']));
   });
 
@@ -160,7 +158,7 @@ DEFINE FIELD created ON document TYPE datetime;
       },
     );
     const sql = 'SELECT * FROM person';
-    final results = ((await db.query(sql))! as List).first;
+    final results = await db.query(sql);
     final people = results! as List;
     expect(people.length, equals(2));
   });
@@ -171,7 +169,7 @@ DEFINE FIELD created ON document TYPE datetime;
       'name': 'Tom',
       'settings': {'active': true, 'marketing': false},
     };
-    final created = ((await db.create('person', data))! as List).first;
+    final created = await db.create('person', data);
     final tom = Map<String, dynamic>.from(created! as Map);
     final id = tom['id'] as String;
     await db.delete(id);
@@ -193,10 +191,9 @@ DEFINE FIELD created ON document TYPE datetime;
     await db.patch('keyValue', [
       {'op': 'replace', 'path': '/key', 'value': 'newValue'},
     ]);
-    final result =
-        ((await db.query('SELECT key FROM keyValue'))! as List).first;
+    final result = await db.query('SELECT key FROM keyValue');
     expect(
-      result as List,
+      result! as List,
       equals([
         {'key': 'newValue'},
       ]),
