@@ -96,6 +96,11 @@ class _HomePageState extends State<HomePage> {
     );
 
     await execute(
+      () => db.version(),
+      'db.version',
+    );
+
+    await execute(
       () => db.use(namespace: 'surreal', database: 'surreal'),
       'db.use()',
     );
