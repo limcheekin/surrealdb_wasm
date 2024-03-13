@@ -445,6 +445,7 @@ class Surreal {
           e.contains('Encountered a non-object value in array')) {
         // If it's the specific error we're looking for,
         // not handled due to the reported issue.
+        // ignore: avoid_print
         print('''
 ERROR: "$e" is not handled.
 Please see https://github.com/surrealdb/surrealdb.wasm/issues/56.''');
