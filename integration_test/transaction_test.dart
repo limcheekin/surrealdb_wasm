@@ -111,7 +111,7 @@ void main() {
         txn.query('');
       });
 
-      expect(result, isEmpty);
+      expect(result, isNull);
     });
 
     test('Concurrent Transactions: Multiple transactions execute concurrently',

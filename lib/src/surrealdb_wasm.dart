@@ -264,7 +264,7 @@ class Surreal {
         data is Map || data is Iterable ? jsonEncode(data) : data,
       ),
     );
-    return (dartify(result)! as List).first;
+    return _wrap(result);
   }
 
   /// Updates a specific resource(record)
@@ -309,7 +309,7 @@ class Surreal {
         data is Map || data is Iterable ? jsonEncode(data) : data,
       ),
     );
-    return (dartify(result)! as List).first;
+    return _wrap(result);
   }
 
   /// Merges data into an existing resource(record) or resources(records).
@@ -341,7 +341,7 @@ class Surreal {
         data is Map || data is Iterable ? jsonEncode(data) : data,
       ),
     );
-    return (dartify(result)! as List).first;
+    return _wrap(result);
   }
 
   /// Selects and retrieves all resources(records)
@@ -361,16 +361,17 @@ class Surreal {
   /// final person = await db.select('person:h5wxrf2ewk8xjxosxtyc');
   /// ```
   Future<Object?> select(String resource) async {
-    print('** select resource $resource');
-    final result = await promiseToFuture<Object?>(
-      _surreal.select(
-        resource,
-      ),
+    return _handleError(
+      resource,
+      (resource) async {
+        final result = await promiseToFuture<Object?>(
+          _surreal.select(
+            resource,
+          ),
+        );
+        return _wrap(result);
+      },
     );
-    print('** select result $result');
-    final list = dartify(result)! as List;
-    print('** select list $list');
-    return list.isEmpty ? null : (list.length == 1 ? list.first : list);
   }
 
   /// Executes a SurrealQL query on the database.
@@ -398,8 +399,7 @@ class Surreal {
         jsonEncode(bindings),
       ),
     );
-    final list = dartify(result)! as List;
-    return list.isNotEmpty ? list.first : list;
+    return _wrap(result);
   }
 
   /// Deletes a specific resource(record) or all resources(records).
@@ -418,11 +418,46 @@ class Surreal {
   /// final record = await db.delete('person:h5wxrf2ewk8xjxosxtyc');
   /// ```
   Future<Object?> delete(String resource) async {
-    final result = await promiseToFuture<Object?>(
-      _surreal.delete(
-        resource,
-      ),
+    return _handleError(
+      resource,
+      (resource) async {
+        final result = await promiseToFuture<Object?>(
+          _surreal.delete(
+            resource,
+          ),
+        );
+        return _wrap(result);
+      },
     );
+  }
+
+  Future<Object?> _handleError(
+    String resource,
+    Future<Object?> Function(
+      String resource,
+    ) sqlFunction,
+  ) async {
+    try {
+      return await sqlFunction(resource);
+    } catch (e) {
+      // Catch the error.
+      if (e is String &&
+          e.contains('Encountered a non-object value in array')) {
+        // If it's the specific error we're looking for,
+        // not handled due to the reported issue.
+        print('''
+ERROR: "$e" is not handled.
+Please see https://github.com/surrealdb/surrealdb.wasm/issues/56.''');
+        return null;
+      } else {
+        // If it's any other error, rethrow it.
+        rethrow;
+      }
+    }
+  }
+
+  Object? _wrap(Object? result) {
+    if (result == null || dartify(result) == null) return null;
     final list = dartify(result)! as List;
     return list.isEmpty ? null : (list.length == 1 ? list.first : list);
   }

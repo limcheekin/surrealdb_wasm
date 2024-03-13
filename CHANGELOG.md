@@ -11,10 +11,17 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [0.9.0+6] - 2024-03-13
+
+- Feat: Upgraded to surrealdb.wasm 0.9.0, the official release of wasm module of the surrealdb 1.3.0.
+- Feat: API breaking changes:
+  - `db.select()` and `db.query()` that return single result, no longer requiring casting to `List` and retrieval by `.first`.
+- Fix: Catched the error `Encountered a non-object value in array` within the library, preventing it from being exposed to the user. Reported the bug at [surrealdb.wasm#56](https://github.com/surrealdb/surrealdb.wasm/issues/56).
+
 
 ## [0.8.0+5] - 2024-03-07
 
-- Upgraded to official surrealdb.wasm 0.8.0 released for surrealdb 1.2.0.
+- Upgraded to the official surrealdb.wasm 0.8.0 released for surrealdb 1.2.0.
 - API breaking changes: 
   - Previous: `db.use(ns: 'test', db: 'test');`
   - Current: `db.use(namespace: 'test', database: 'test');` 
