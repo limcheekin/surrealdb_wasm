@@ -136,8 +136,8 @@ DEFINE FIELD created ON document TYPE datetime;
     };
     final created = await db.create('person', data);
     final tom = Map<String, dynamic>.from(created! as Map);
-    final results = (await db.select(tom['id'] as String))! as List;
-    final selectedTom = Map<String, dynamic>.from(results.first as Map);
+    final result = await db.select(tom['id'] as String);
+    final selectedTom = Map<String, dynamic>.from(result! as Map);
     expect(tom['name'], equals(selectedTom['name']));
   });
 
@@ -173,8 +173,8 @@ DEFINE FIELD created ON document TYPE datetime;
     final tom = Map<String, dynamic>.from(created! as Map);
     final id = tom['id'] as String;
     await db.delete(id);
-    final results = (await db.select('person'))! as List;
-    expect(results, isEmpty);
+    final result = await db.select('person');
+    expect(result, isNull);
   });
 
   testWidgets('set test', (WidgetTester tester) async {
