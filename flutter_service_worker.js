@@ -9,12 +9,12 @@ const RESOURCES = {"assets/AssetManifest.bin": "615e1e6470a59db2b829ca241989c2f8
 "assets/NOTICES": "aa51b3689a8cb8986d419780b68559ab",
 "assets/AssetManifest.json": "c722350d0dc9d4a77ba879063929060c",
 "assets/fonts/MaterialIcons-Regular.otf": "0db35ae7a415370b89e807027510caf0",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js.gz": "9e728c6ef93f0030f60609fde1491078",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.wasm.gz": "3e917b5dc4cba403d6e9049a06f92324",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index.js": "f0d0d61d9d6c1546c9acd7acf7c34fe9",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index_bg.wasm": "98da428a04d33689ca88986d14d4f8e2",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js": "e057fe1338c37d8668de9216617c0a33",
-"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js": "8ac1961031e4dbbaf7817c36dbe6c5c1",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js.gz": "6f1c716b2577b91dc89507fd7d13d1b8",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.wasm.gz": "0ad931126596e9fea031996cd2e0b879",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index.js": "6c981c6734862c45819e5abdcb6f17c8",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index_bg.wasm": "ca48ae7d167e725060f777a9880d1acb",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js": "d50910400c22c80f0550ec8d73bce914",
+"assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js": "34efa97a1aaf343853472083c7a126ad",
 "assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb.js": "3c614289ebced54274cce45388daf9a2",
 "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
 "canvaskit/skwasm.js.symbols": "741d50ffba71f89345996b0aa8426af8",
@@ -35,9 +35,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "615e1e6470a59db2b829ca241989c2f8
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "c71a09214cb6f5f8996a531350400a9a",
 "manifest.json": "f5e7a2cbf54c9e9b1e9008d89b378047",
-"index.html": "8ba49fe6c8506b5c0e2d3c0d57044948",
-"/": "8ba49fe6c8506b5c0e2d3c0d57044948",
-"main.dart.js": "781d2cf262ddfdb7acf6564d169bd96d"};
+"index.html": "05848bba4ba26be8e0d3d836a0835718",
+"/": "05848bba4ba26be8e0d3d836a0835718",
+"main.dart.js": "fec1f75ae44a80c1c7103612696a0736"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
