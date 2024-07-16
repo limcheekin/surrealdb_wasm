@@ -21,9 +21,8 @@ jobs:
         with:
           version: 8
             
-
-      #- name: Install wasm-pack
-      #  run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Install surrealdb.wasm NPM dependencies
         run: cd surrealdb.wasm;pnpm install
