@@ -48,7 +48,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "github@users.noreply.github.com"
           git add -f assets/wasm/surrealdb/surrealdb_wasm.*
-          git add assets/wasm/surrealdb/index.js
+          git add assets/wasm/surrealdb/esm.bundled.js
           git add assets/wasm/surrealdb/index_bg.wasm
           git add assets/wasm/surrealdb/surrealdb.wasm.gz
           if [ -n "$(git status --porcelain)" ]; then
