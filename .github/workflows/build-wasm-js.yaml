@@ -10,35 +10,37 @@ jobs:
       - name: Checkout own repo
         uses: actions/checkout@v4
 
-      - name: "Checkout surrealdb.wasm repo (latest tag)"
+      - name: Checkout surrealdb.wasm repo (latest tag)
         run: |
           git clone https://github.com/surrealdb/surrealdb.wasm.git
           cd surrealdb.wasm;export LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
           git checkout $LATEST_TAG
 
-      - name: "Install Node & NPM"
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
-          registry-url: "https://registry.npmjs.org"
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.0.0
+            
 
-      - name: "Install wasm-pack"
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      #- name: Install wasm-pack
+      #  run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      - name: "Install surrealdb.wasm NPM dependencies"
-        run: cd surrealdb.wasm;npm install
+      - name: Install surrealdb.wasm NPM dependencies
+        run: cd surrealdb.wasm;pnpm install
 
-      - name: "Build"
-        run: cd surrealdb.wasm;wasm-pack build --release --target web --out-name index --out-dir ../assets/wasm/surrealdb --no-default-features --features kv-indxdb,kv-mem
+      - name: Build
+        run: |
+          cd surrealdb.wasm
+          make build
+          cp ./dist/embedded/esm.bundled.js ../assets/wasm/surrealdb
+          cp ./dist/embedded/index_bg.wasm ../assets/wasm/surrealdb
 
       - name: "Install NPM dependencies"
-        run: npm install
+        run: pnpm install
 
       - name: "Minify and compress JavaScript files"
-        run: npm run package
+        run: pnpm run package
 
       - name: "Compress wasm file"
-        run: npm run compress-wasm
+        run: pnpm run compress-wasm
 
       - name: Git commit compressed surrealdb_wasm assets
         run: |
