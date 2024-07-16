@@ -25,6 +25,9 @@ jobs:
       - name: Analyze code
         run: flutter analyze lib integration_test
 
+      - name: Setup SurrealDB
+        run: curl -sSf https://install.surrealdb.com | sh
+        
       - name: Setup chrome driver
         uses: nanasess/setup-chromedriver@v2
 
