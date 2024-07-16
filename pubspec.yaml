@@ -4,20 +4,22 @@ version: 0.9.0
 repository: https://github.com/limcheekin/surrealdb_wasm
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.10.0"
+  sdk: "^3.4.0"
+  flutter: ">=3.22.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  js: ^0.7.1
+  surrealdb_js: ^1.0.0-beta.14+3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   integration_test:
     sdk: flutter
+  logger:
   very_good_analysis: ^5.1.0
+
 
 flutter:
   assets:

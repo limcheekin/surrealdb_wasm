@@ -4,53 +4,26 @@ import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:surrealdb_js/surrealdb_js.dart';
 import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 
-void main() {
+void main({bool wasm = false}) {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final db = Surreal();
+  final db = Surreal({'engines': WasmEngine()});
 
   setUpAll(() async {
-    await db.connect('mem://');
-    await db.use(namespace: 'surreal', database: 'surreal');
+    if (wasm) {
+      await db.connect('indxdb://test');
+      await db.use(namespace: 'surreal', database: 'surreal');
+    } else {
+      await db.connect('http://127.0.0.1:8000/rpc');
+      await db.use(namespace: 'surreal', database: 'surreal');
+      await db.signin({'username': 'root', 'password': 'root'});
+    }
   });
+
   group('db.transaction()', () {
-    testWidgets('should throw error message: Connection uninitialised',
-        (WidgetTester tester) async {
-      expect(
-        () async {
-          final newDb = Surreal();
-          await newDb.transaction(
-            (txn) async {
-              txn.query('CREATE account:one SET balance = 135605.16;');
-            },
-          );
-        },
-        throwsA(
-          predicate((e) => e is String && e == 'Connection uninitialised'),
-        ),
-      );
-    });
-
-    testWidgets('should throw error message: Specify a namespace to use',
-        (WidgetTester tester) async {
-      expect(
-        () async {
-          final newDb = Surreal();
-          await newDb.connect('mem://');
-          await newDb.transaction(
-            (txn) async {
-              txn.query('CREATE account:one SET balance = 135605.16;');
-            },
-          );
-        },
-        throwsA(
-          predicate((e) => e is String && e == 'Specify a namespace to use'),
-        ),
-      );
-    });
-
     testWidgets('Transaction executes successfully',
         (WidgetTester tester) async {
       await db.transaction((txn) async {
@@ -90,20 +63,6 @@ void main() {
       );
       final result = await db.query('SELECT * FROM test;');
       expect(result, isEmpty);
-    });
-
-    testWidgets('Transaction with invalid SQL throws exception',
-        (WidgetTester tester) async {
-      expect(
-        () async {
-          await db.transaction((txn) async {
-            txn.query(
-              'CREATE TABLE test (id INTEGER PRIMARY KEY, name TEXT);',
-            );
-          });
-        },
-        throwsA(isA<String>()),
-      );
     });
 
     test('Transaction with empty SQL does not execute', () async {

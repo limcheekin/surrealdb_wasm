@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:surrealdb_js/surrealdb_js.dart';
 import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 import 'package:flutter_console_widget/flutter_console.dart';
 
@@ -33,7 +34,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final FlutterConsoleController controller = FlutterConsoleController();
-  final db = Surreal();
+  final db = Surreal({'engines': WasmEngine()});
   static const commandSymbol = '>';
 
   Future<dynamic> execute(Function function, [String? message]) async {
@@ -129,10 +130,11 @@ class _HomePageState extends State<HomePage> {
       'db.create()',
     );
 
+    final id = created['id'].toString();
     await execute(
       () {
         return db.update(
-          created['id'],
+          id,
           {
             'title': 'CTO',
             'name': {
@@ -147,7 +149,7 @@ class _HomePageState extends State<HomePage> {
 
     await execute(
       () => db.merge(
-        created['id'],
+        id,
         {
           'marketing': false,
         },
@@ -157,7 +159,7 @@ class _HomePageState extends State<HomePage> {
 
     await execute(
       () => db.patch(
-        created['id'],
+        id,
         [
           {'op': 'replace', 'path': '/status', 'value': 'completed'},
         ],
