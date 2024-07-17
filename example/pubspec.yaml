@@ -13,7 +13,8 @@ dependencies:
   flutter_console_widget:
     path: flutter_console_widget
   surrealdb_js: ^1.0.0-beta.14+3
-  surrealdb_wasm: ^1.0.0-beta.14+9
+  surrealdb_wasm:
+    path: ../
 
 dev_dependencies:
   flutter_test:
