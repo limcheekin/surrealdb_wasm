@@ -1,1 +1,1 @@
-- Feat: Added `SurrealWasm.getInstance()` to simplify instantiation of the `Surreal` class with the `WasmEngine`.
+- Feat: Changed `SurrealWasm` from `extension` to regular `class`.
