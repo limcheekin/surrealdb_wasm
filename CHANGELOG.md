@@ -11,6 +11,11 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [1.0.0-beta.14+8] - 2024-07-17
+
+- Feat: Upgraded surrealdb.wasm to 1.0.0-beta.14.
+- Feat: Integrated with surrealdb_js 1.0.0-beta.14+3 that provide an unified API.
+
 ## [0.9.0+7] - 2024-03-13
 
 - Feat: Upgraded to surrealdb.wasm 0.9.0, the official release of wasm module of the surrealdb 1.3.0.

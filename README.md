@@ -5,7 +5,7 @@
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 
-The Flutter SurrealDB WebAssembly (WASM) package is a powerful integration for Flutter, built upon the foundation of [surrealdb.wasm](https://github.com/surrealdb/surrealdb.wasm), the official SurrealDB library for WebAssembly.
+The Flutter SurrealDB WebAssembly (WASM) package is a powerful integration for Flutter, built upon the foundation of [surrealdb.wasm](https://github.com/surrealdb/surrealdb.wasm), the WebAssembly engine for the SurrealDB JavaScript SDK. Consequently, the [surrealdb_js](https://pub.dev/packages/surrealdb_js) package will provide an unified API for the WebAssembly engine.
 
 ## 🔍 Demo
 
@@ -37,33 +37,32 @@ Install it:
 flutter pub get
 ```
 
+Lastly, add the following code before the `</head>` tag in the `web/index.html` file:
+```html
+<script type="module">
+  import { Surreal, StringRecordId } from "/assets/packages/surrealdb_js/assets/js/index.bundled.mjs";
+  import { surrealdbWasmEngines } from "/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/esm.bundled.js";
+  
+  // expose the type to the global scope
+  globalThis.SurrealJS = Surreal;
+  globalThis.StringRecordId = StringRecordId;
+  globalThis.WasmEngine = surrealdbWasmEngines;
+</script>
+```
+
 ## ✨ Features
 
-- <input type="checkbox" checked disabled /> [x] `connect()`
-- <input type="checkbox" checked disabled /> [x] `use()`
-- <input type="checkbox" checked disabled /> [x] `create()`
-- <input type="checkbox" checked disabled /> [x] `update()`
-- <input type="checkbox" checked disabled /> [x] `merge()`
-- <input type="checkbox" checked disabled /> [x] `delete()`
-- <input type="checkbox" checked disabled /> [x] `select()`
-- <input type="checkbox" checked disabled /> [x] `query()`
-- <input type="checkbox" checked disabled /> [x] `transaction()`
-- <input type="checkbox" checked disabled /> [x] `set()`
-- <input type="checkbox" checked disabled /> [x] `unset()`
-- <input type="checkbox" checked disabled /> [x] `signup()`
-- <input type="checkbox" checked disabled /> [x] `signin()`
-- <input type="checkbox" disabled /> [ ] `invalidate()`
-- <input type="checkbox" disabled /> [ ] `authenticate()`
-- <input type="checkbox" checked disabled /> [x] `patch()`
-- <input type="checkbox" checked disabled /> [x] `version()`
-- <input type="checkbox" checked disabled /> [x] `health()`
+Please refer to the [surrealdb_js](https://pub.dev/packages/surrealdb_js#-features) package for a comprehensive list of features.
 
 ## 🏃 Examples
 
 ### Basic
 
 ```dart
-final db = Surreal();
+import 'package:surrealdb_js/surrealdb_js.dart';
+import 'package:surrealdb_wasm/surrealdb_wasm.dart';
+
+final db = Surreal({'engines': WasmEngine()});
 
 await db.connect('indxdb://surreal');
 await db.use(namespace: 'test', database: 'test');
@@ -79,17 +78,17 @@ final created = db.create('person',
           },
         );
 
-// created['id']: person:b9eht8bie8abf0vbcfxh
+final id = created['id'].toString();
 final merged = await db.merge(
-        created['id'],
+        id,
         {
           'marketing': false,
         },
       );
 
-final tom = await db.select(created['id']);
+final tom = await db.select(id);
 
-final deleted = await db.delete(created['id']);
+final deleted = await db.delete(id);
 ```
 
 For more code examples, kindly refer to the [integration test](https://github.com/limcheekin/surrealdb_wasm/blob/main/integration_test/surrealdb_wasm_test.dart) and the [example project](https://github.com/limcheekin/surrealdb_wasm/blob/main/example/lib/main.dart).
@@ -115,7 +114,7 @@ For more code examples, kindly refer to the [integration test of transaction](ht
 
 ## 🧑‍💼 Contributing
 
-Contributions are welcome! Please check out the unimplemented features above, issues on the repository, and feel free to open a pull request.
+Contributions are welcome! Please check out the unimplemented features or issues on the repository, and feel free to open a pull request.
 For more information, please see the [contribution guide](CONTRIBUTING.md).
 
 <a href="https://github.com/limcheekin/surrealdb_wasm/graphs/contributors">

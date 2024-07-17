@@ -1,4 +1,2 @@
-- Feat: Upgraded to surrealdb.wasm 0.9.0, the official release of wasm module of the surrealdb 1.3.0.
-- Feat: API breaking changes:
-  - `db.select()` and `db.query()` that return single result, no longer requiring casting to `List` and retrieval by `.first`.
-- Fix: Catched the error `Encountered a non-object value in array` within the library, preventing it from being exposed to the user. Reported the bug at [surrealdb.wasm#56](https://github.com/surrealdb/surrealdb.wasm/issues/56).
+- Feat: Upgraded surrealdb.wasm to 1.0.0-beta.14.
+- Feat: Integrated with surrealdb_js 1.0.0-beta.14+3 that provide an unified API.

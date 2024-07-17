@@ -20,7 +20,7 @@ Welcome to the surrealdb_wasm project! We're excited to have you as a potential 
 
 ### Project Overview
 
-The Flutter SurrealDB WebAssembly (WASM) package is a powerful integration for Flutter, built upon the foundation of [surrealdb.wasm](https://github.com/surrealdb/surrealdb.wasm), the official SurrealDB library for WebAssembly. We value contributions that enhance this project's functionality and maintain its quality.
+The Flutter SurrealDB WebAssembly (WASM) package is a powerful integration for Flutter, built upon the foundation of [surrealdb.wasm](https://github.com/surrealdb/surrealdb.wasm), the WebAssembly engine for the SurrealDB JavaScript SDK. Consequently, the [surrealdb_js](https://pub.dev/packages/surrealdb_js) package will provide an unified API for the WebAssembly engine. We value contributions that enhance this project's functionality and maintain its quality.
 
 ### Licensing
 
@@ -32,10 +32,11 @@ Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. We 
 
 ### Getting Started
 
-1. Clone the repository: `git clone https://github.com/limcheekin/surrealdb_wasm.git`
+1. Fork and clone the repository: https://github.com/limcheekin/surrealdb_wasm/fork
 2. Install dependencies: `flutter pub get`
 3. Set up your development environments:
-   - [Download and install Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to build `surrealdb_wasm.js` with the `npm run package` command after making changes to [surrealdb.js](https://github.com/limcheekin/surrealdb_wasm/blob/main/assets/wasm/surrealdb/surrealdb.js).
+   - [Download and install Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to build `surrealdb_wasm.js` with the `npm run package` command after making changes to [surrealdb.js](https://github.com/limcheekin/surrealdb_wasm/blob/main/assets/wasm/surrealdb/surrealdb.js) file.
+   - [Install SurrealDB on Linux](https://surrealdb.com/docs/surrealdb/installation/linux).
    - Download [Chrome Driver](https://chromedriver.chromium.org/downloads) for integration test execution.
 
 ### Contributor Guidelines
