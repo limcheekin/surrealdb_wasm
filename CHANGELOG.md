@@ -11,6 +11,9 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [1.0.0-beta.14+9] - 2024-07-17
+- Feat: Added `SurrealWasm.getInstance()` to simplify instantiation of the `Surreal` class with the `WasmEngine`.
+
 ## [1.0.0-beta.14+8] - 2024-07-17
 
 - Feat: Upgraded surrealdb.wasm to 1.0.0-beta.14.

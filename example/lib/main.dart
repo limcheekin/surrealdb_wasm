@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:surrealdb_js/surrealdb_js.dart';
 import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 import 'package:flutter_console_widget/flutter_console.dart';
 
@@ -34,7 +33,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final FlutterConsoleController controller = FlutterConsoleController();
-  final db = Surreal({'engines': WasmEngine()});
+  final db = SurrealWasm.getInstance();
   static const commandSymbol = '>';
 
   Future<dynamic> execute(Function function, [String? message]) async {

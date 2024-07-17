@@ -1,2 +1,1 @@
-- Feat: Upgraded surrealdb.wasm to 1.0.0-beta.14.
-- Feat: Integrated with surrealdb_js 1.0.0-beta.14+3 that provide an unified API.
+- Feat: Added `SurrealWasm.getInstance()` to simplify instantiation of the `Surreal` class with the `WasmEngine`.

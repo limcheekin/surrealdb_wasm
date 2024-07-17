@@ -62,7 +62,7 @@ Please refer to the [surrealdb_js](https://pub.dev/packages/surrealdb_js#-featur
 import 'package:surrealdb_js/surrealdb_js.dart';
 import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 
-final db = Surreal({'engines': WasmEngine()});
+final db = SurrealWasm.getInstance();
 
 await db.connect('indxdb://surreal');
 await db.use(namespace: 'test', database: 'test');
