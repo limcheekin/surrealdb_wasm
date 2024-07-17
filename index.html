@@ -37,12 +37,17 @@
 
     <script>
       // The value below is injected by flutter build, do not touch.
-      const serviceWorkerVersion = "3475423370";
+      const serviceWorkerVersion = "1357347815";
     </script>
-    <script
-      type="module"
-      src="assets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.min.js"
-    ></script>
+    <script type="module">
+			import { Surreal, StringRecordId } from "/assets/packages/surrealdb_js/assets/js/index.bundled.mjs";
+			import { surrealdbWasmEngines } from "/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/esm.bundled.js";
+    	
+      // expose the type to the global scope
+    	globalThis.SurrealJS = Surreal;
+    	globalThis.StringRecordId = StringRecordId;
+			globalThis.WasmEngine = surrealdbWasmEngines;
+    </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
   </head>
