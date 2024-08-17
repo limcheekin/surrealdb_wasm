@@ -11,6 +11,11 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [1.0.0-beta.16+11] - 2024-08-17
+
+- Feat: Upgraded surrealdb.wasm to 1.0.0-beta.16.
+- Feat: Upgraded surrealdb_js to 1.0.0-beta.20+4.
+
 ## [1.0.0-beta.14+10] - 2024-07-17
 - Feat: Changed `SurrealWasm` from `extension` to regular `class`.
 

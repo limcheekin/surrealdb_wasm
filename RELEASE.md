@@ -1,1 +1,2 @@
-- Feat: Changed `SurrealWasm` from `extension` to regular `class`.
+- Feat: Upgraded surrealdb.wasm to 1.0.0-beta.16.
+- Feat: Upgraded surrealdb_js to 1.0.0-beta.20+4.
