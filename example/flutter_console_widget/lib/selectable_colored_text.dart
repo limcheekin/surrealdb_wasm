@@ -10,11 +10,11 @@ class SelectableColoredText extends StatefulWidget {
 
   const SelectableColoredText(
     this.text, {
-    Key? key,
+    super.key,
     this.style,
     required this.selectedTextColor,
     required this.selectedTextBackgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   // ignore: library_private_types_in_public_api

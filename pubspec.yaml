@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  mutex: ^3.1.0
   surrealdb_js: ^1.0.0-beta.20+4
 
 dev_dependencies:

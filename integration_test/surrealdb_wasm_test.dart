@@ -8,7 +8,7 @@ import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 void main({bool wasm = false}) {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final db = SurrealWasm.getInstance();
+  final db = SurrealWasmMutex.getInstance();
   //Tests run with local SurrealDB instance started with the command below:
   //surreal start memory --log trace --allow-all --auth --user root --pass root
   setUpAll(() async {

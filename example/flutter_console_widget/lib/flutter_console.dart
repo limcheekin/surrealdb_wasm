@@ -16,10 +16,10 @@ class FlutterConsole extends StatelessWidget {
     required this.height,
     this.inputBackground = const Color(0xff333333),
     this.inputTextColor = Colors.white,
-    Key? key,
+    super.key,
     this.scrollColor = Colors.grey,
     required this.width,
-  }) : super(key: key);
+  });
 
   final Color consoleBackground;
   final Color consoleTextColor;
