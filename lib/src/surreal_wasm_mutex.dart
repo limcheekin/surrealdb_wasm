@@ -150,14 +150,4 @@ class SurrealWasmMutex extends Surreal {
       return super.delete(resource);
     });
   }
-
-  @override
-  Future<Object?> transaction(
-    Future<void> Function(Transaction txn) action, {
-    Duration timeout = const Duration(seconds: 5),
-  }) async {
-    return _mutex.protect(() async {
-      return super.transaction(action, timeout: timeout);
-    });
-  }
 }
