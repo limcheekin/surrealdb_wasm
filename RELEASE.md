@@ -1,2 +1,1 @@
-- Feat: Upgraded surrealdb.wasm to 1.0.0-beta.16.
-- Feat: Upgraded surrealdb_js to 1.0.0-beta.20+4.
+- Feat: Added `SurrealWasmMutex` class to workaround the issue [#87](https://github.com/surrealdb/surrealdb.wasm/issues/87) of the surrealdb.wasm.
