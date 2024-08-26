@@ -11,6 +11,10 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [1.0.0-beta.16+13] - 2024-08-26
+
+- Feat: Added `mutex` flag that default to `false` (off) to methods of the `SurrealWasmMutex` class to allow turn on/off the mutex locking mechanism.
+
 ## [1.0.0-beta.16+12] - 2024-08-24
 
 - Feat: Added `SurrealWasmMutex` class to workaround the issue [#87](https://github.com/surrealdb/surrealdb.wasm/issues/87) of the surrealdb.wasm.

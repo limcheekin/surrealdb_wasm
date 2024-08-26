@@ -17,137 +17,234 @@ class SurrealWasmMutex extends Surreal {
   }
 
   @override
-  Future<void> let(String key, Object value) async {
-    await _mutex.protect(() async {
-      return super.let(key, value);
-    });
+  Future<void> let(String key, Object value, {bool mutex = false}) async {
+    if (!mutex) {
+      await super.let(key, value);
+    } else {
+      await _mutex.protect(() async {
+        return super.let(key, value);
+      });
+    }
   }
 
   @override
-  Future<void> unset(String key) async {
-    await _mutex.protect(() async {
-      return super.unset(key);
-    });
+  Future<void> unset(String key, {bool mutex = false}) async {
+    if (!mutex) {
+      await super.unset(key);
+    } else {
+      await _mutex.protect(() async {
+        return super.unset(key);
+      });
+    }
   }
 
   @override
-  Future<Object?> signup(Map<String, dynamic> credentials) async {
-    return _mutex.protect(() async {
+  Future<Object?> signup(
+    Map<String, dynamic> credentials, {
+    bool mutex = false,
+  }) async {
+    if (!mutex) {
       return super.signup(credentials);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.signup(credentials);
+      });
+    }
   }
 
   @override
-  Future<Object?> signin(Map<String, dynamic> credentials) async {
-    return _mutex.protect(() async {
+  Future<Object?> signin(
+    Map<String, dynamic> credentials, {
+    bool mutex = false,
+  }) async {
+    if (!mutex) {
       return super.signin(credentials);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.signin(credentials);
+      });
+    }
   }
 
   @override
-  Future<void> invalidate() async {
-    await _mutex.protect(() async {
-      return super.invalidate();
-    });
+  Future<void> invalidate({bool mutex = false}) async {
+    if (!mutex) {
+      await super.invalidate();
+    } else {
+      await _mutex.protect(() async {
+        return super.invalidate();
+      });
+    }
   }
 
   @override
-  Future<void> authenticate(String token) async {
-    await _mutex.protect(() async {
-      return super.authenticate(token);
-    });
+  Future<void> authenticate(String token, {bool mutex = false}) async {
+    if (!mutex) {
+      await super.authenticate(token);
+    } else {
+      await _mutex.protect(() async {
+        return super.authenticate(token);
+      });
+    }
   }
 
   @override
-  Future<Object?> info() async {
-    return _mutex.protect(() async {
+  Future<Object?> info({bool mutex = false}) async {
+    if (!mutex) {
       return super.info();
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.info();
+      });
+    }
   }
 
   @override
   Future<Object?> patch(
     String resource,
-    List<Map<String, dynamic>> data,
-  ) async {
-    return _mutex.protect(() async {
+    List<Map<String, dynamic>> data, {
+    bool mutex = false,
+  }) async {
+    if (!mutex) {
       return super.patch(resource, data);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.patch(resource, data);
+      });
+    }
   }
 
   @override
-  Future<String> version() async {
-    return _mutex.protect(() async {
+  Future<String> version({bool mutex = false}) async {
+    if (!mutex) {
       return super.version();
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.version();
+      });
+    }
   }
 
   @override
   Future<void> connect(
     String endpoint, {
     Map<String, dynamic> options = const {},
+    bool mutex = false,
   }) async {
-    await _mutex.protect(() async {
-      return super.connect(endpoint, options: options);
-    });
+    if (!mutex) {
+      await super.connect(endpoint, options: options);
+    } else {
+      await _mutex.protect(() async {
+        return super.connect(endpoint, options: options);
+      });
+    }
   }
 
   @override
-  Future<void> close() async {
-    await _mutex.protect(() async {
-      return super.close();
-    });
+  Future<void> close({bool mutex = false}) async {
+    if (!mutex) {
+      await super.close();
+    } else {
+      await _mutex.protect(() async {
+        return super.close();
+      });
+    }
   }
 
   @override
-  Future<void> use({String? namespace, String? database}) async {
-    await _mutex.protect(() async {
-      return super.use(namespace: namespace, database: database);
-    });
+  Future<void> use({
+    String? namespace,
+    String? database,
+    bool mutex = false,
+  }) async {
+    if (!mutex) {
+      await super.use(namespace: namespace, database: database);
+    } else {
+      await _mutex.protect(() async {
+        return super.use(namespace: namespace, database: database);
+      });
+    }
   }
 
   @override
-  Future<Object?> create(String resource, Object data) async {
-    return _mutex.protect(() async {
+  Future<Object?> create(
+    String resource,
+    Object data, {
+    bool mutex = false,
+  }) async {
+    if (!mutex) {
       return super.create(resource, data);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.create(resource, data);
+      });
+    }
   }
 
   @override
-  Future<Object?> update(String resource, Object data) async {
-    return _mutex.protect(() async {
+  Future<Object?> update(
+    String resource,
+    Object data, {
+    bool mutex = false,
+  }) async {
+    if (!mutex) {
       return super.update(resource, data);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.update(resource, data);
+      });
+    }
   }
 
   @override
-  Future<Object?> merge(String resource, Object data) async {
-    return _mutex.protect(() async {
+  Future<Object?> merge(
+    String resource,
+    Object data, {
+    bool mutex = false,
+  }) async {
+    if (!mutex) {
       return super.merge(resource, data);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.merge(resource, data);
+      });
+    }
   }
 
   @override
-  Future<Object?> select(String resource) async {
-    return _mutex.protect(() async {
+  Future<Object?> select(String resource, {bool mutex = false}) async {
+    if (!mutex) {
       return super.select(resource);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.select(resource);
+      });
+    }
   }
 
   @override
   Future<Object?> query(
     String sql, {
     Map<String, dynamic> bindings = const {},
+    bool mutex = false,
   }) async {
-    return _mutex.protect(() async {
+    if (!mutex) {
       return super.query(sql, bindings: bindings);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.query(sql, bindings: bindings);
+      });
+    }
   }
 
   @override
-  Future<Object?> delete(String resource) async {
-    return _mutex.protect(() async {
+  Future<Object?> delete(String resource, {bool mutex = false}) async {
+    if (!mutex) {
       return super.delete(resource);
-    });
+    } else {
+      return _mutex.protect(() async {
+        return super.delete(resource);
+      });
+    }
   }
 }

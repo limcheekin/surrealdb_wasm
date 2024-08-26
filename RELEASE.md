@@ -1,1 +1,1 @@
-- Feat: Added `SurrealWasmMutex` class to workaround the issue [#87](https://github.com/surrealdb/surrealdb.wasm/issues/87) of the surrealdb.wasm.
+- Feat: Added `mutex` flag that default to `false` (off) to methods of the `SurrealWasmMutex` class to allow turn on/off the mutex locking mechanism.
