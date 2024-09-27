@@ -10,7 +10,7 @@ import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 void main({bool wasm = false}) {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final db = SurrealWasmMutex.getInstance();
+  final db = SurrealWasm.getInstance();
 
   setUpAll(() async {
     if (wasm) {
@@ -28,7 +28,6 @@ void main({bool wasm = false}) {
         (WidgetTester tester) async {
       await db.transaction((txn) async {
         txn.query('DEFINE TABLE test SCHEMAFULL;');
-        txn.query('DEFINE FIELD id ON test TYPE record;');
         txn.query('DEFINE FIELD name ON test TYPE string;');
         txn.query(
           r'CREATE test SET name = $name;',

@@ -5,7 +5,7 @@ import 'package:surrealdb_wasm/surrealdb_wasm.dart';
 void main({bool wasm = false}) {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final db = SurrealWasmMutex.getInstance();
+  final db = SurrealWasm.getInstance();
 
   setUpAll(() async {
     if (wasm) {
