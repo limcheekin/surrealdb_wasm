@@ -3,4 +3,3 @@ library surrealdb_wasm;
 
 export 'src/js.dart';
 export 'src/surreal_wasm.dart';
-export 'src/surreal_wasm_mutex.dart';

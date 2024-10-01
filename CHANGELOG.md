@@ -11,6 +11,12 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [1.0.0-beta.22+14] - 2024-10-01
+
+- Feat: Upgraded surrealdb.wasm to 1.0.0-beta.22.
+- Feat: Upgraded surrealdb_js to 1.0.1+7.
+- Feat: Removed `SurrealWasmMutex` class as the issue [#87](https://github.com/surrealdb/surrealdb.wasm/issues/87) is likely resolved by PR [#107](https://github.com/surrealdb/surrealdb.wasm/pull/107).
+
 ## [1.0.0-beta.16+13] - 2024-08-26
 
 - Feat: Added `mutex` flag that default to `false` (off) to methods of the `SurrealWasmMutex` class to allow turn on/off the mutex locking mechanism.

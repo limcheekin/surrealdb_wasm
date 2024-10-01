@@ -41,7 +41,7 @@ Lastly, add the following code before the `</head>` tag in the `web/index.html` 
 ```html
 <script type="module">
   import { Surreal, StringRecordId } from "/assets/packages/surrealdb_js/assets/js/index.bundled.mjs";
-  import { surrealdbWasmEngines } from "/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/esm.bundled.js";
+  import { surrealdbWasmEngines } from "/assets/packages/surrealdb_wasm/assets/wasm/surrealdb/index.bundled.js";
   
   // expose the type to the global scope
   globalThis.SurrealJS = Surreal;
@@ -98,7 +98,7 @@ For more code examples, kindly refer to the [integration test](https://github.co
 ```dart
 final result = await db.transaction((txn) async {
     txn.query('DEFINE TABLE test SCHEMAFULL;');
-    txn.query('DEFINE FIELD id ON test TYPE record;');
+    txn.query(r'DEFINE FIELD id ON test VALUE <record>($value) ASSERT $value != NONE;');
     txn.query('DEFINE FIELD name ON test TYPE string;');
     txn.query(
       r'CREATE test SET name = $name;',
