@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "description": "surrealdb_wasm javascript files minifier and gz packager.",
   "scripts": {
-    "concat": "concat -o assets/wasm/surrealdb/surrealdb_wasm.js assets/wasm/surrealdb/esm.bundled.js assets/wasm/surrealdb/surrealdb.js",
+    "replace-fetch-wasm": "sed -i 's/await(await fetch(wasm_url)).arrayBuffer()/await fetchWasm()/g' assets/wasm/surrealdb/index.bundled.js",
+    "concat": "concat -o assets/wasm/surrealdb/surrealdb_wasm.js assets/wasm/surrealdb/index.bundled.js assets/wasm/surrealdb/surrealdb.js",
     "minify": "terser assets/wasm/surrealdb/surrealdb_wasm.js -c drop_console -m -o assets/wasm/surrealdb/surrealdb_wasm.min.js",
     "compress": "gzip -c assets/wasm/surrealdb/surrealdb_wasm.min.js > assets/wasm/surrealdb/surrealdb_wasm.min.js.gz",
-    "package": "pnpm run concat && npm run minify && npm run compress",
+    "package": "pnpm run replace-fetch-wasm && pnpm run concat && pnpm run minify && pnpm run compress",
     "dev": "pnpm run concat && flutter run",
     "compress-wasm": "gzip -c -9 assets/wasm/surrealdb/index_bg.wasm > assets/wasm/surrealdb/surrealdb.wasm.gz"
   },

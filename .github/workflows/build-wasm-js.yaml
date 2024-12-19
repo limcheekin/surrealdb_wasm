@@ -39,8 +39,8 @@ jobs:
           cp ./dist/surreal/index.bundled.js ../assets/wasm/surrealdb
           cp ./dist/surreal/index_bg.wasm ../assets/wasm/surrealdb
 
-      #- name: "Minify and compress JavaScript files"
-      #  run: pnpm run package
+      - name: "Minify and compress JavaScript files"
+        run: pnpm run package
 
       - name: "Compress wasm file"
         run: pnpm run compress-wasm
