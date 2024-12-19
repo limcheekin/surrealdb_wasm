@@ -3,12 +3,16 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Development server</title>
+		<script type="module">
+			import * as fflate from './assets/js/fflate-0.8.2.min.js';
+			globalThis.fflate = fflate;
+		</script>
 	</head>
 	<body>
 		<p>Open a console to access the Surreal class!</p>
 		<script type="module">
 			import { Surreal, StringRecordId } from "/assets/packages/surrealdb_js/assets/js/index.bundled.mjs";
-			import { surrealdbWasmEngines } from "./assets/wasm/surrealdb/esm.bundled.js";
+			import { surrealdbWasmEngines } from "./assets/wasm/surrealdb/surrealdb_wasm.js";
     		// expose the type to the global scope
     		globalThis.SurrealJS = Surreal;
     		globalThis.StringRecordId = StringRecordId;
