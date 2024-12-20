@@ -42,7 +42,7 @@ jobs:
       - name: "Install NPM dependencies"
         run: pnpm install
 
-      - name: "Minify and compress JavaScript files"
+      - name: "Package JavaScript files"
         run: pnpm run package
 
       - name: "Compress wasm file"
