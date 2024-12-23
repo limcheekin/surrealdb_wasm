@@ -1,1 +1,2 @@
-- Feat: Upgraded surrealdb.wasm to 1.0.1.
+- Feat: Add `fetchWasm` function to fetch and decompress surrealdb.wasm.gz file.
+- Feat: Upgraded surrealdb.wasm to 1.1.0.

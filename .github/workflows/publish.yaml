@@ -33,6 +33,12 @@ jobs:
       - name: Update GITHUB_RUN_NUMBER to version
         run: ./update_version.sh
 
+      - name: Git commit pubspec.yaml to prevent validation error
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github@users.noreply.github.com"
+          git commit -am "chore: updated pubspec.yaml"
+          
       - name: Prepare pub credentials
         run: mkdir -p $XDG_CONFIG_HOME/dart && echo '${{ secrets.CREDENTIAL_JSON }}' > "$XDG_CONFIG_HOME/dart/pub-credentials.json"
 

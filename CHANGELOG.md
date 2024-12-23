@@ -11,6 +11,11 @@ Changes to the project are tracked using build numbers behind the version number
 
 ## [Unreleased]
 
+## [1.1.0+16] - 2024-12-23
+
+- Feat: Add `fetchWasm` function to fetch and decompress surrealdb.wasm.gz file.
+- Feat: Upgraded surrealdb.wasm to 1.1.0.
+
 ## [1.0.1+15] - 2024-10-07
 
 - Feat: Upgraded surrealdb.wasm to 1.0.1.

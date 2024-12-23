@@ -1,6 +1,6 @@
 name: surrealdb_wasm
 description: Flutter SurrealDB WebAssembly(WASM) package
-version: 1.0.1
+version: 1.1.0
 repository: https://github.com/limcheekin/surrealdb_wasm
 
 environment:
