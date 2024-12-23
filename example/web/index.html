@@ -39,9 +39,13 @@
       // The value below is injected by flutter build, do not touch.
       const serviceWorkerVersion = null;
     </script>
+		<script type="module">
+      import * as fflate from "$FLUTTER_BASE_HREFassets/packages/surrealdb_wasm/assets/js/fflate-0.8.2.min.js";
+      globalThis.fflate = fflate;
+    </script>
     <script type="module">
 			import { Surreal, StringRecordId } from "$FLUTTER_BASE_HREFassets/packages/surrealdb_js/assets/js/index.bundled.mjs";
-			import { surrealdbWasmEngines } from "$FLUTTER_BASE_HREFassets/packages/surrealdb_wasm/assets/wasm/surrealdb/index.bundled.js";
+			import { surrealdbWasmEngines } from "$FLUTTER_BASE_HREFassets/packages/surrealdb_wasm/assets/wasm/surrealdb/surrealdb_wasm.js";
     	
       // expose the type to the global scope
     	globalThis.SurrealJS = Surreal;

@@ -220,6 +220,15 @@ class _HomePageState extends State<HomePage> {
       () => db.delete('person'),
       'db.delete()',
     );
+
+    await execute(() => db.transaction((txn) async {
+          txn.query('DEFINE TABLE test SCHEMAFULL;');
+          txn.query('DEFINE FIELD name ON test TYPE string;');
+          txn.query(
+            r'CREATE test SET name = $name;',
+            bindings: {'name': 'John'},
+          );
+        }));
   }
 
   @override
